@@ -51,7 +51,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /F /y $(TargetPath) C:\Workspace\poe2mod\PatchworkLauncher\bin\$(ConfigurationName)</PostBuildEvent>
+    <PostBuildEvent>echo d | xcopy /F /y $(TargetPath) $(SolutionDir)\PatchworkLauncher\bin\$(ConfigurationName)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
