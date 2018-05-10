@@ -1,24 +1,47 @@
-# TyrannyMod.pw
-Modding framework for Tyranny (NON DLC)
+# PoE2Mods.pw
+Modding framework for Pillars of Eternity 2
 
-This framework allows you to make changes to almost the entire gamut of Tyranny's codebase.  Much like PoE was, Tyranny's code appears to be pretty much straight non-obfuscated Unity code, so extremely easy and fun to change to your liking.
+This framework allows you to make changes to almost the entire gamut of PoE2's codebase.  Much like PoE was, PoE2's code appears to be pretty much straight non-obfuscated Unity code, so extremely easy and fun to change to your liking.
 
-Most instructions can be followed directly from Patchwork.  This repo includes all of the relevant modifications for Tyranny already in place.  It also has a bugfix in the Patchwork framework that crashed Tyranny.  Once Patchwork merges my pull req, this repo can switch to using it as a submodule instead of duplicating it.
+Most instructions can be followed directly from Patchwork.  This repo includes all of the relevant modifications for PoE already in place. Note that the release version of Patchwork itself is broken, so I highly recommend using the version in this repo.
 
-# Setup
+# Requirements
 
-Two files will need to be updated to match your personal file paths:
-- AppInfoDLL.cs 
-- TyrannyPatchInfo.cs
+Patchwork is a Mono/.NET application and so needs the .NET Framework or Mono to run.
 
-The needed changes are really obvious.  Note that a large portion of Tyranny's code base is inside Assembly-firstpass, not the plain assembly.  It looks like they reused a huge amount of the code from Pillars of Eternity in Tyranny and all of it ended up in Firstpass.  You'll just have to poke around the decompiled versions of both DLLs to find what you want.
+    Windows: .NET Framework 4.5+
+    Linux and Mac: Mono 4.2.1.102+
 
-# Building
+# Instructions
 
-The solution should build perfectly once the paths specified above are changed.  After build, you'll need to move AppInfo.DLL from its project's bin directory into TyrranyMods.pw's bin directory.  Then run PatchworkLauncher.exe from that same bin directory, point it to your Tyranny install, and add TyrannyMods.pw.dll as a mod. Enjoy!
+Using the program is straight-forward:
+
+    Extract it into an empty folder.
+
+    Launch the program (PatchworkLauncher.exe)
+
+    Note: On Linux, you may need to open the program using mono explicitly (see instructions on running Mono applications in your distribution).
+
+    Specify your game folder in the dialog box or type it in the textbox.
+
+    Note: The dialog box will not display hidden files or folders.
+
+    Go to the Active Mods menu and add the mod file(s) (usually ending with .pw.dll) to the list of mods, checking those you want enabled.
+
+    Note: Mod files so chosen will normally be copied to the Mods folder.
+
+    Use Launch with Mods and Launch without Mods to start the game.
+
+# Building/Development
+
+Building is fairly straightforward.  You will need to create an Open Assembly version of PoE2's original Assembly-CSharp.dll found in the PillarsOfEternity2_Data/Managed directory of your game install.  You do this via OpenAssemblyCreator.exe which is included in the repo.  Your mod projects will all need to reference this OPEN assembly.  Once this reference has been added, the solution should build just fine.  See my various included mod projects for development guidelines.
+
+# Deployment
+
+Once you've successfully built, you'll find your mods inside of each of the Mod build paths.  Those DLLs need to be moved to your PatchworkLauncher folder, preferably into a Mods subdir like I've done in my Release.
 
 # Current Mods
 
-Most of these are just quick, hacky example mods I made to test.  GameSpeed adds a new way-faster speed option and turns the toggle fast/slow hotkeys into scaled steps.  CampingSupplies is an example of correctly modifying a property.  CameraControl is just a quick way to test to make sure your patch is working since changes to this are REALLY apparent.
-
-FogOfWar is much more extensive and serves as an example of modifying a complex block of code. The UpdateVertices method decompiles fairly hideously with ILSpy and JustDecompile both producing a method that doesn't compile at all.  I ended up using DotPeek's decompilation as the base and cross referencing the other decompiled versions to decipher what was happening.
+GameSpeed adds a new way-faster speed option and turns the toggle fast/slow hotkeys into scaled steps.  Combat Speed has been removed and the whole thing feels very similar to PoE1.  The Combat Speed Up/Down keybindings in-game will adjust your in-game speed across (0.2x, 1x, 2x, 6x).  Pressing F or the Fast Mode toggle key will instantly toggle the speed to 10x for running around maps really fast wheee.
+AchievementEnabler does what it sounds like - it removes the penalty for using `iroll20s` in the Console, so you can still gain achievements.  If you've previously already used `iroll20s` I THINK this will re-enable achievements anyway, but I'm not sure.
+CipherFocus - this was my throwaway test mod.  In its current state it just slightly rearranges Focus totals and generation for Ciphers.  It's pretty pointless, but I left it as another example anyway.
