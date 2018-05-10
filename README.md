@@ -14,6 +14,8 @@ Patchwork is a Mono/.NET application and so needs the .NET Framework or Mono to 
 
 # Instructions
 
+**If you ONLY want to use mods, not create them, please click the Release link at the top of the page!  Download Release.7z and continue with these instructions using it.**
+
 Using the program is straight-forward:
 
     Extract it into an empty folder.
