@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{565C269A-F5EB-4BBE-86E5-75C8D4E1CDF7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Patchwork.Engine</RootNamespace>
+    <AssemblyName>Patchwork.Engine</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Externalconsole>true</Externalconsole>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\Patchwork.Engine.XML</DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Publish|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Publish\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>1591</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <NoWarn>
+    </NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Release\Patchwork.Engine.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <WarningLevel>2</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Serilog, Version=1.5.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.1.5.13\lib\net45\Serilog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Serilog.FullNetFx, Version=1.5.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.1.5.13\lib\net45\Serilog.FullNetFx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Patchwork.SharedAttributes.cs">
+      <Link>Properties\Patchwork.SharedAttributes.cs</Link>
+    </Compile>
+    <Compile Include="AssemblyPatcher\CreateNew.cs" />
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="PatchingManifest\PatchInfoProxy.cs" />
+    <Compile Include="Utility\Collections\MappingCache.cs" />
+    <Compile Include="AssemblyPatcher\FixReferences.cs" />
+    <Compile Include="ImplicitImportSetting.cs" />
+    <Compile Include="Utility\NamespaceDoc.cs" />
+    <Compile Include="Utility\Reflections and Cecil\AssemblyCache.cs" />
+    <Compile Include="Utility\Reflections and Cecil\CecilLoader.cs" />
+    <Compile Include="Utility\Reflections and Cecil\CustomAttributeHelper.cs" />
+    <Compile Include="Utility\Reflections and Cecil\DisplayNameHelper.cs" />
+    <Compile Include="Utility\Reflections and Cecil\CecilOverloadResolver.cs" />
+    <Compile Include="Utility\Reflections and Cecil\Hacks.cs" />
+    <Compile Include="Utility\Reflections and Cecil\PatchedMemberHelper.cs" />
+    <Compile Include="PatchingManifest\ManifestCreator.cs" />
+    <Compile Include="PatchingManifest\MemberAction.cs" />
+    <Compile Include="AssemblyPatcher\ModifyExisting.cs" />
+    <Compile Include="PatchingManifest\TypeAction.cs" />
+    <Compile Include="Utility\Collections\SimpleTypeGroup.cs" />
+    <Compile Include="Utility\Collections\SimpleTypeLookup.cs" />
+    <Compile Include="Errors\Errors.cs" />
+    <Compile Include="Errors\PatchDeclerationException.cs" />
+    <Compile Include="Errors\PatchException.cs" />
+    <Compile Include="Errors\PatchImportException.cs" />
+    <Compile Include="PatchingManifest\PatchingManifest.cs" />
+    <Compile Include="Utility\Reflections and Cecil\Accessibility.cs" />
+    <Compile Include="AssemblyPatcher\AssemblyPatcher.cs" />
+    <Compile Include="Utility\Asserts.cs" />
+    <Compile Include="Utility\Reflections and Cecil\CommonBindingFlags.cs" />
+    <Compile Include="Utility\Reflections and Cecil\ExprHelper.cs" />
+    <Compile Include="Utility\Misc Helpers\LogHelper.cs" />
+    <Compile Include="Utility\Misc Helpers\PathHelper.cs" />
+    <Compile Include="Utility\Reflections and Cecil\CecilHelper.cs" />
+    <Compile Include="Utility\Reflections and Cecil\PeVerifyRunner.cs" />
+    <Compile Include="Utility\Reflections and Cecil\ReflectHelper.cs" />
+    <Compile Include="Utility\Misc Helpers\SeqHelper.cs" />
+    <Compile Include="Utility\Misc Helpers\StringHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\cecil-0.9.6\Mono.Cecil.csproj">
+      <Project>{d68133bd-1e63-496e-9ede-4fbdbf77b486}</Project>
+      <Name>Mono.Cecil</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\cecil-0.9.6\rocks\Mono.Cecil.Rocks.csproj">
+      <Project>{fbc6dd59-d09d-499c-b03c-99c1c78ff2ac}</Project>
+      <Name>Mono.Cecil.Rocks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\cecil-0.9.6\symbols\mdb\Mono.Cecil.Mdb.csproj">
+      <Project>{8559dd7f-a16f-46d0-a05a-9139faeba8fd}</Project>
+      <Name>Mono.Cecil.Mdb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\cecil-0.9.6\symbols\pdb\Mono.Cecil.Pdb.csproj">
+      <Project>{63e6915c-7ea4-4d76-ab28-0d7191eea626}</Project>
+      <Name>Mono.Cecil.Pdb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Patchwork.Attributes\Patchwork.Attributes.csproj">
+      <Project>{47dcbaf7-f2e6-486c-8887-fa41c271b74e}</Project>
+      <Name>Patchwork.Attributes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Patchwork.Engine.nuspec" />
+    <Content Include="PEVerify">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="pevrfyrc.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+</Project>

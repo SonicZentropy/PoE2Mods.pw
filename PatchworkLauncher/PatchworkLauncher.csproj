@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6C30DED5-0078-48AC-91BB-A0A05A1FC899}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PatchworkLauncher</RootNamespace>
+    <AssemblyName>PatchworkLauncher</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>IconSmall.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Publish|AnyCPU'">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\Publish\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <Optimize>false</Optimize>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Serilog, Version=1.5.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.1.5.13\lib\net45\Serilog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Serilog.FullNetFx, Version=1.5.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.1.5.13\lib\net45\Serilog.FullNetFx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Patchwork.SharedAttributes.cs">
+      <Link>Properties\Patchwork.SharedAttributes.cs</Link>
+    </Compile>
+    <Compile Include="Binding\Bindable.cs" />
+    <Compile Include="Binding\BindableExt.cs" />
+    <Compile Include="Binding\Bindables\BindableBase.cs" />
+    <Compile Include="Binding\Bindables\ComputedBindable.cs" />
+    <Compile Include="Binding\Bindables\ConstBindable.cs" />
+    <Compile Include="Binding\Bindables\ConvertingBindable.cs" />
+    <Compile Include="Binding\Bindables\DispatchingBindable.cs" />
+    <Compile Include="Binding\Bindables\IBindable.cs" />
+    <Compile Include="Binding\Bindables\LinkingBindable.cs" />
+    <Compile Include="Binding\Bindables\ListBindable.cs" />
+    <Compile Include="Binding\Bindables\MemberBindable.cs" />
+    <Compile Include="Binding\Bindables\VariableBindable.cs" />
+    <Compile Include="Binding\Binding.cs" />
+    <Compile Include="Binding\BindingMode.cs" />
+    <Compile Include="Binding\Errors.cs" />
+    <Compile Include="Binding\MemberAccessor.cs" />
+    <Compile Include="Binding\NotificationModes\AggregateMode.cs" />
+    <Compile Include="Binding\NotificationModes\EventRaised.cs" />
+    <Compile Include="Binding\NotificationModes\NotificationMode.cs" />
+    <Compile Include="Binding\NotificationModes\NotifyPropertyChanged.cs" />
+    <Compile Include="Binding\Validation\ValidationRule.cs" />
+    <Compile Include="Collections\CastList.cs" />
+    <Compile Include="Collections\ProjectedList.cs" />
+    <Compile Include="GUI\Helpers\DisposingBindingList.cs" />
+    <Compile Include="Patching\PatchingHelper.cs" />
+    <Compile Include="Patching\PatchingProcessException.cs" />
+    <Compile Include="Patching\PatchInstruction.cs" />
+    <Compile Include="Patching\PatchInstructionSequence.cs" />
+    <Compile Include="Patching\Serialization\XmlFileHistory.cs" />
+    <Compile Include="Patching\Serialization\XmlInstruction.cs" />
+    <Compile Include="Patching\Serialization\XmlPreferences.cs" />
+    <Compile Include="Patching\Serialization\XmlSettings.cs" />
+    <Compile Include="Patching\Serialization\XmlPatchHistory.cs" />
+    <Compile Include="Patching\Serialization\XmlHistory.cs" />
+    <Compile Include="GUI\Forms\guiInputGameFolder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Forms\guiInputGameFolder.Designer.cs">
+      <DependentUpon>guiInputGameFolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Forms\LogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Forms\LogForm.Designer.cs">
+      <DependentUpon>LogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\LaunchManager.cs" />
+    <Compile Include="GUI\Helpers\ColorChannel.cs" />
+    <Compile Include="GUI\Helpers\ColorExt.cs" />
+    <Compile Include="GUI\Forms\guiHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Forms\guiHome.Designer.cs">
+      <DependentUpon>guiHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Forms\guiMods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Forms\guiMods.Designer.cs">
+      <DependentUpon>guiMods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Helpers\GuiExt.cs" />
+    <Compile Include="MiscExtensions.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UI Hooks\IProgressObject.cs" />
+    <Compile Include="UI Hooks\ProgressList.cs" />
+    <Compile Include="UI Hooks\ProgressObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\cecil-0.9.6\Mono.Cecil.csproj">
+      <Project>{d68133bd-1e63-496e-9ede-4fbdbf77b486}</Project>
+      <Name>Mono.Cecil</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\cecil-0.9.6\rocks\Mono.Cecil.Rocks.csproj">
+      <Project>{fbc6dd59-d09d-499c-b03c-99c1c78ff2ac}</Project>
+      <Name>Mono.Cecil.Rocks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\cecil-0.9.6\symbols\mdb\Mono.Cecil.Mdb.csproj">
+      <Project>{8559dd7f-a16f-46d0-a05a-9139faeba8fd}</Project>
+      <Name>Mono.Cecil.Mdb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\cecil-0.9.6\symbols\pdb\Mono.Cecil.Pdb.csproj">
+      <Project>{63e6915c-7ea4-4d76-ab28-0d7191eea626}</Project>
+      <Name>Mono.Cecil.Pdb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Patchwork.Attributes\Patchwork.Attributes.csproj">
+      <Project>{47dcbaf7-f2e6-486c-8887-fa41c271b74e}</Project>
+      <Name>Patchwork.Attributes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Patchwork.Engine\Patchwork.Engine.csproj">
+      <Project>{565c269a-f5eb-4bbe-86e5-75c8d4e1cdf7}</Project>
+      <Name>Patchwork.Engine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\IconSmall.png" />
+    <None Include="Resources\IconMed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GUI\Forms\guiHome.resx">
+      <DependentUpon>guiHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Forms\LogForm.resx">
+      <DependentUpon>LogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IconSmall.ico" />
+    <Content Include="preferences.pw.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <FilesToDelete Include="$(OutDir)*.pdb" />
+      <FilesToDelete Include="$(OutDir)*.xml" />
+    </ItemGroup>
+    <!-- This cleans the garbage out of the Publish release folder...
+    -->
+    <Delete Files="@(FilesToDelete)" ContinueOnError="false" Condition="'$(Configuration)' == 'Publish'" />
+    <!-- This copies OAC to the PW launcher folder. This is good because it's supposed to be distributed with the launcher. 
+         PWL is supposed to be dependent on OAC in the solution configuration.
+    -->
+    <Copy SourceFiles="$(ProjectDir)..\OpenAssemblyCreator\$(OutputPath)OpenAssemblyCreator.exe" DestinationFolder="$(OutDir)" ContinueOnError="false" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

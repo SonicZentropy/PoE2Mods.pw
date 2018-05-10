@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{47DCBAF7-F2E6-486C-8887-FA41C271B74E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Patchwork</RootNamespace>
+    <AssemblyName>Patchwork.Attributes</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Patchwork.Attributes.XML</DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>2</WarningLevel>
+    <DocumentationFile>bin\Release\Patchwork.Attributes.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PrepareEnvironment|AnyCPU'">
+    <OutputPath>bin\PrepareEnvironment\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Publish|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Publish\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>1591</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Patchwork.SharedAttributes.cs">
+      <Link>Properties\Patchwork.SharedAttributes.cs</Link>
+    </Compile>
+    <Compile Include="AutoPatching\AppInfoFactory.cs" />
+    <Compile Include="AutoPatching\AppInfoFactoryAttribute.cs" />
+    <Compile Include="AutoPatching\IPatchInfo.cs" />
+    <Compile Include="AutoPatching\AppInfo.cs" />
+    <Compile Include="CommonTargets.cs" />
+    <Compile Include="AutoPatching\NamespaceDoc.cs" />
+    <Compile Include="History\NamespaceDoc.cs" />
+    <Compile Include="NeverEmbedAttribute.cs" />
+    <Compile Include="PatchingAttributes\AdvancedModificationScope.cs" />
+    <Compile Include="PatchingAttributes\AliasCallMode.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Assembly\AssemblyActionAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\DisablePatchingAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Member\DuplicatesBodyAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Assembly\ImportCustomAttributesAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Assembly\DisablePatchingByNameAttribute.cs" />
+    <Compile Include="AutoPatching\PatchInfoAttribute.cs" />
+    <Compile Include="PatchingAttributes\NamespaceDoc.cs" />
+    <Compile Include="PatchingAttributes\PatchingTarget.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Member\ToggleFieldAttributes.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Member\PatchworkDebugRegisterAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Member\MemberActions\MemberActionAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Member\MemberActions\MemberAliasAttribute.cs" />
+    <Compile Include="PatchingAttributes\ModificationScope.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Member\MemberActions\ModifiesAccessibilityAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Member\MemberActions\ModifiesMemberAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Type\ModifiesTypeAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Member\MemberActions\NewMemberAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Member\ToggleMethodAttributes.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Type\ToggleTypeAttributes.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Type\TypeActionAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Type\NewTypeAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Assembly\PatchAssemblyAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\PatchingAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Member\MemberActions\RemoveThisMemberAttribute.cs" />
+    <Compile Include="PatchingAttributes\Attributes\Type\ReplaceTypeAttribute.cs" />
+    <Compile Include="History\PatchApplicationMetadata.cs" />
+    <Compile Include="History\PatchedByAssemblyAttribute.cs" />
+    <Compile Include="History\PatchingHistoryAttribute.cs" />
+    <Compile Include="History\PatchedByMemberAttribute.cs" />
+    <Compile Include="History\PatchedByTypeAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\PatchworkInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Patchwork.Attributes.nuspec" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild" Condition="'$(Configuration)' == 'Release'">
+    <Exec ContinueOnError="false" WorkingDirectory="$(OutDir)" Command="&quot;$(SolutionDir).nuget\nuget.exe&quot; pack &quot;$(ProjectPath)&quot; -Exclude &quot;*.nlp&quot; -NonInteractive -Verbosity detailed -NoDefaultExcludes -Properties Configuration=&quot;$(Configuration)&quot;;Platform=&quot;$(Platform)&quot;" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
