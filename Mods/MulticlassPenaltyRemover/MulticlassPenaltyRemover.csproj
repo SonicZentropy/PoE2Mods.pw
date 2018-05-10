@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>b6e27e0b-0494-4037-b821-15dff6c4ed3f</ProjectGuid>
+    <ProjectGuid>{B6E27E0B-0494-4037-B821-15DFF6C4ED3F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MulticlassPenaltyRemover</RootNamespace>
-    <AssemblyName>MulticlassPenaltyRemover</AssemblyName>
+    <AssemblyName>MulticlassPenaltyRemover.pw</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,24 +30,42 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\PatchworkLauncher\bin\Debug\TargetDLL\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>D:\Games\Pillars of Eternity II Deadfire\PillarsOfEternityII_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="MulticlassPenaltyRemover.cs" />
+    <Compile Include="POE2PatchInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Patchwork.Attributes\Patchwork.Attributes.csproj">
+      <Project>{47dcbaf7-f2e6-486c-8887-fa41c271b74e}</Project>
+      <Name>Patchwork.Attributes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Patchwork.Engine\Patchwork.Engine.csproj">
+      <Project>{565c269a-f5eb-4bbe-86e5-75c8d4e1cdf7}</Project>
+      <Name>Patchwork.Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PatchworkLauncher\PatchworkLauncher.csproj">
+      <Project>{6c30ded5-0078-48ac-91bb-a0a05a1fc899}</Project>
+      <Name>PatchworkLauncher</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /F /y $(TargetPath) C:\Workspace\poe2mod\PatchworkLauncher\bin\$(ConfigurationName)\Mods</PostBuildEvent>
+  </PropertyGroup>
+</Project>

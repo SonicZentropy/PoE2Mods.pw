@@ -31,5 +31,5 @@ public class POE2PatchInfo : IPatchInfo
 
 	public string PatchVersion { get { return "1.0.0.000"; } }
 	public string Requirements { get { return "None"; } }
-	public string PatchName { get { return "GameSpeedMod"; } }
+	public string PatchName { get { return "MulticlassPenaltyRemover"; } }
 }
