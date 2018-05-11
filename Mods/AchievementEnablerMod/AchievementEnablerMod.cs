@@ -16,9 +16,9 @@ namespace POE2Mods.pw
         public void IRoll20sNew()
         {
             GameState.Instance.CheatsEnabled = !GameState.Instance.CheatsEnabled;
-            if (GameState.Instance.CheatsEnabled && SingletonBehavior<AchievementTracker>.Instance != null) {
-                SingletonBehavior<AchievementTracker>.Instance.DisableAchievements = false;
-            }
+            //if (GameState.Instance.CheatsEnabled && SingletonBehavior<AchievementTracker>.Instance != null) {
+            //    SingletonBehavior<AchievementTracker>.Instance.DisableAchievements = false;
+            //}
             if (GameState.Instance.CheatsEnabled) {
                 Game.Console.AddMessage("Cheats Enabled - Warning - Achievements NOT DISABLED for this game.");
             }

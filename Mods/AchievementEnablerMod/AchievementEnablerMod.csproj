@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AchievementEnablerMod.cs" />
     <Compile Include="AchievementTrackerNew.cs" />
+    <Compile Include="CommandLineRunNew.cs" />
     <Compile Include="POE2PatchInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
