@@ -1,6 +1,8 @@
 # PoE2Mods.pw
 Modding framework for Pillars of Eternity 2
 
+** IF STEAM OR WHEREVER YOU GOT THE GAME FROM HAS UPDATED THE GAME, YOU NEED TO UPDATE THIS AS WELL**
+
 This framework allows you to make changes to almost the entire gamut of PoE2's codebase.  Much like PoE was, PoE2's code appears to be pretty much straight non-obfuscated Unity code, so extremely easy and fun to change to your liking.
 
 Most instructions can be followed directly from Patchwork.  This repo includes all of the relevant modifications for PoE already in place. Note that the release version of Patchwork itself is broken, so I highly recommend using the version in this repo.
@@ -52,7 +54,9 @@ Once you've successfully built, you'll find your mods inside of each of the Mod 
 
 Due to how the game operates with Steam, you can't get Steam Achievements with this framework directly.  You can only receive them by running the game via Steam's executable, which my mod bypasses and runs directly.  You can work around it if you really want those sweet Steam points, but it's relatively painful.  First, you need to run the game WITH all mods active that you want to be active.  Once the game has fully loaded (DO NOT CLOSE IT), open File Explorer and find POE2's directory.  From there, go into PillarsOfEternity2_Data/Managed and you'll see "Assembly-CSharp.dll".  You need to copy this file somewhere else temporarily.  Now close your game entirely and let the Mod Launcher fully close as well.  Once that's done, go back to PillarsOfEternity2_Data/Managed and RENAME "Assembly-CSharp.dll" to "Assembly-CSharp.dll.ORIGINAL".  Now paste the file you copied into this directory, so it's the new "Assembly-CSharp.dll".  Run your game through Steam and it will have all Mods applied plus allow Steam achievements.
 
-Note that at this point, you're bypassing the launcher.  The launcher automatically does this process at runtime.  You will need to redo the whole process every time you want to change which Mods you're using OR every time Steam updates.
+Note that at this point, you're bypassing the launcher.  The launcher automatically does this process at runtime.  You will need to redo the whole process every time you want to change which Mods you're using OR every time Steam updates. *PLEASE NOTE* every time Steam updates POE2 you're going to have to redo this process, but ONLY after downloading a new Release from here.  If there's been a Steam update of the game and you don't see a new release here, please open an Issue or otherwise send me a message, because you will need new DLLs to handle the update.  Undefined behaviors and most likely horrible, terrible things will happen to you otherwise.  I'm not responsible for this mod framework lighting your house on fire and killing your pets.  You have been warned!
+
+To reverse this process and remove mods (for the excellent FrostFG, thanks buddy!), you need to go back to your PillarsOfEternity2_Data/Managed folder and delete the "Assembly-CSharp.dll" from above.  Now rename the "Assembly-CSharp.dll.ORIGINAL" that you changed earlier back to "Assembly-CSharp.dll" and you're done.  Your game is now completely mod free!
 
 # MODIFYING CLASS OR SUBCLASS
 
@@ -65,6 +69,8 @@ There are 2 Console Commands already built into the game.
 
 
 # RELEASE NOTES
+
+1.07 - More Readme warnings about updating this mod along with POE2 
 
 1.06 - Started making release notes.  Please read the section on AchievementEnabler, as usage is VERY different now and you should not continue using `iroll20s`.  Also added instructions for class/subclass modification.
 
