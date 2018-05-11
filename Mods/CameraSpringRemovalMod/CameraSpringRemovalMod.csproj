@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1A2050B7-2ED7-47AE-8998-189CFAFA78E5}</ProjectGuid>
+    <ProjectGuid>{94E7F2B1-368A-473D-8BA3-102CEA02DF10}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CipherFocusMod</RootNamespace>
-    <AssemblyName>CipherFocusMod.pw</AssemblyName>
+    <RootNamespace>CameraSpringRemovalMod</RootNamespace>
+    <AssemblyName>CameraSpringRemovalMod.pw</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -47,7 +47,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CipherFocus.cs" />
+    <Compile Include="CameraSpringRemovalMod.cs" />
     <Compile Include="POE2PatchInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
