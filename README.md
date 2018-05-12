@@ -49,6 +49,8 @@ Once you've successfully built, you'll find your mods inside of each of the Mod 
   * GameSpeed adds a new way-faster speed option and turns the toggle fast/slow hotkeys into scaled steps.  Combat Speed has been removed and the whole thing feels very similar to PoE1.  The Combat Speed Up/Down keybindings in-game will adjust your in-game speed across (0.2x, 1x, 2x, 6x).  Pressing F or the Fast Mode toggle key will instantly toggle the speed to 10x for running around maps really fast wheee.
   * AchievementEnabler does what it sounds like - it removes the penalty for cheating in the Console, so you can still gain achievements.  With this, the most important aspect is NOT TO USE `iroll20s`.  You no longer need to enter this command in order to enable cheat commands, and doing so could possibly cause problems.  Since there's no reason to use it now, don't.  Just type your console commands directly.  If you've previously already used `iroll20s` I THINK typing it again will re-enable achievements anyway, but I'm not sure.
   * CipherFocus - this was my throwaway test mod.  In its current state it just slightly rearranges Focus totals and generation for Ciphers.  It's pretty pointless, but I left it as another example anyway.
+  * CameraSpringRemovalMod - This one I made for myself.  If you're using the game speed mod, at the highest setting, the camera spring wobbles constantly and makes it really obnoxious to click stuff.  This removes that wobble and converts the camera to a slightly-smoothed locked camera.  It looks slightly less pretty, but way more usable! 
+  * MulticlassPenaltyRemover - Experimentation mod.  This removes the level penalty to accessing each tier of class ability at levelup, so you gain them at the same rate as a single classed character.  This obviously makes the character insanely OP, and given that the game is apparently already really easy, you probably don't want to use this for an actual playthrough.  I made it because I always reroll a million times in these games and wanted to test a bunch of builds rapidly with minimal trouble.
 
 # STEAM ACHIEVEMENTS
 
@@ -69,6 +71,8 @@ There are 2 Console Commands already built into the game.
 
 
 # RELEASE NOTES
+
+1.10 - 2 new Mods, see above!
 
 1.07 - More Readme warnings about updating this mod along with POE2 
 
