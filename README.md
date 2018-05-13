@@ -51,6 +51,8 @@ Once you've successfully built, you'll find your mods inside of each of the Mod 
   * CipherFocus - this was my throwaway test mod.  In its current state it just slightly rearranges Focus totals and generation for Ciphers.  It's pretty pointless, but I left it as another example anyway.
   * CameraSpringRemovalMod - This one I made for myself.  If you're using the game speed mod, at the highest setting, the camera spring wobbles constantly and makes it really obnoxious to click stuff.  This removes that wobble and converts the camera to a slightly-smoothed locked camera.  It looks slightly less pretty, but way more usable! 
   * MulticlassPenaltyRemover - Experimentation mod.  This removes the level penalty to accessing each tier of class ability at levelup, so you gain them at the same rate as a single classed character.  This obviously makes the character insanely OP, and given that the game is apparently already really easy, you probably don't want to use this for an actual playthrough.  I made it because I always reroll a million times in these games and wanted to test a bunch of builds rapidly with minimal trouble.
+  * DisableAutosave - It disables autosave!
+  * ResetEmpowerAndSpells - This instantly restores all empower points and/or spells/abilities for all selected characters.  Select 1 or more characters, then press Ctrl + E to restore Empower points and press Ctrl + S to restore spellcasts/abilities.  This restores special stuff as well, like Cipher focus and Chanter phrases.
 
 # STEAM ACHIEVEMENTS
 
@@ -71,6 +73,8 @@ There are 2 Console Commands already built into the game.
 
 
 # RELEASE NOTES
+
+1.20 - Added autosave disable and the requested spell/empower reset hotkeys.
 
 1.10 - 2 new Mods, see above!
 

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Game.GameData;
 
 namespace ResetEmpowerAndSpellsMod
 {
@@ -20,21 +21,44 @@ namespace ResetEmpowerAndSpellsMod
         {
             //base.OnyxUpdate();
 
-            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.A)) {
-                Game.Console.AddMessage("Pressed LCtrl and A To Reset All stuff");
-                var selchar = m_selectedCharacter;
-                if (selchar != null) // there's a selected char
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.E)) {
+                Game.Console.AddMessage("Pressed LCtrl and E to reset Empower");
+
+                //SingletonBehavior<PartyManager>.Instance.GetSelectedPartyMemberGameObjects()
+
+                var selchars = m_selectedCharacters;
+                if (selchars != null) // there's a selected char
                 {
-                    //public bool CanEmpower
-                    // {
-                    //     get {
-                    //         return this.EmpowerPoints > 0 && (this.m_empowerUsedPerEncounterCount == 0 || GameState.Instance.IgnoreResourceLimits);
-                    //     }
-                    selchar.ResetEmpower();
+                    foreach (var selchar in selchars) {
+                        //this resets the # used empowered per combat to 0
+                        selchar.ResetEmpower();
 
-                    //set empower pts to MaxEmpowerPoints
-                    selchar.EmpowerPoints = selchar.MaxEmpowerPoints;
+                        //set empower pts to MaxEmpowerPoints
+                        selchar.EmpowerPoints = selchar.MaxEmpowerPoints;
+                    }
 
+                }
+            }
+
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S)) {
+                Game.Console.AddMessage("Pressed LCtrl and S to reset Spellcasts");
+                var selchars = m_selectedCharacters;
+                if (selchars != null) // there's a selected char
+                {
+                    foreach (var selchar in selchars) {
+                        // FROM EmpowerResources, hopefully fixes spellcasts
+                        foreach (AccruedResourceTrait accruedResourceTrait in selchar.AbilityList.FindAbilitiesByType<AccruedResourceTrait>()) {
+                            //accruedResourceTrait.RestoreResource(accruedResourceTrait.GetSelfEmpowerRestoreCount());
+                            accruedResourceTrait.RestoreResource(accruedResourceTrait.GetResourceMax() - accruedResourceTrait.GetResource());
+                        }
+                        for (CharacterClass characterClass = CharacterClass.None; characterClass < CharacterClass.Count; characterClass++) {
+                            for (int i = 1; i <= GlobalGameSettingsGameData.Instance.MaxSpellLevel; i++) {
+                                OnyxInt spellCastMax = SingletonBehavior<SpellMax>.Instance.GetSpellCastMax(selchar, characterClass, i);
+                                selchar.RestoreSpellCasts(characterClass, i, spellCastMax);
+                            }
+                            selchar.AddClassAbilityPoolPoints(characterClass, selchar.GetMaxPowerPoolPoints(characterClass, null));
+                        }
+                    }
                 }
             }
 
