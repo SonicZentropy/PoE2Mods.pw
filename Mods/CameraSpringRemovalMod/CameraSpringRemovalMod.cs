@@ -38,26 +38,59 @@ namespace PoEMods.pw
             //base.OnyxLateUpdate();
             this.m_preventTrackingTimer = Mathf.Max(0f, this.m_preventTrackingTimer - Time.deltaTime);
             m_timeToUseStrongSpring = 50.0f;
-            //m_timeToAllowMovementLookAhead = 0.0f;
+            m_timeToAllowMovementLookAhead = 0.0f;
             if (GameInput.GetControl(MappedControl.MOUSE_CAMERA_LOOKAHEAD, false)) {
                 this.m_preventTrackingTimer = 0f;
                 //this.m_timeToUseStrongSpring = this.TimeToAllowStrongSpringMovementAfterNoMovement;
             }
-            if (!this.IsAnyPartyMemberMoving()) {
-                //this.m_timeToUseStrongSpring = Mathf.Max(0f, this.m_timeToUseStrongSpring - Time.deltaTime);
-                this.m_timeToAllowMovementLookAhead = Mathf.Max(0f, this.m_timeToAllowMovementLookAhead - Time.deltaTime);
-            }
+           
+            //if (!this.IsAnyPartyMemberMoving()) {
+            //    //this.m_timeToUseStrongSpring = Mathf.Max(0f, this.m_timeToUseStrongSpring - Time.deltaTime);
+            //    this.m_timeToAllowMovementLookAhead = Mathf.Max(0f, this.m_timeToAllowMovementLookAhead - Time.deltaTime);
+            //}
             if (this.m_mouseBiasBeingTracked) {
                 //this.m_timeToUseStrongSpring = Mathf.Max(this.m_timeToUseStrongSpring, 2f);
             }
+
+            //public enum TrackingTargetType
+            //{
+            //SelectedPartyMember = 0,
+            //ActivePartyMember = 1,
+            //Enemy = 2,
+            //Mouse = 3,
+            //Projectile = 4,
+            //NPCBark = 5,
+            //PointOfInterest = 6,
+            //ScriptedObject = 7,
+            //Count = 8
+            //}
+
             for (int i = 0; i < this.m_trackedObjects.Count; i++) {
                 List<GameObject> list = this.m_trackedObjects[(SmartCamera.TrackingTargetType)i];
-                for (int j = list.Count - 1; j >= 0; j--) {
-                    if (list[j] == null || !list[j].activeSelf) {
-                        list.RemoveAt(j);
+
+                //remove everything except party members
+                if (i >= 2) {
+                    for (int j = list.Count - 1; j >= 0; j--) {                   
+                        list.RemoveAt(j);                   
+                    }
+                }
+                else {
+                    for (int j = list.Count - 1; j >= 0; j--) {
+                        if (list[j] == null || !list[j].activeSelf) {
+                            list.RemoveAt(j);
+                        }
                     }
                 }
             }
+
+            //for (int i = 0; i < this.m_trackedObjects.Count; i++) {
+            //    List<GameObject> list = this.m_trackedObjects[(SmartCamera.TrackingTargetType)i];
+            //    for (int j = list.Count - 1; j >= 0; j--) {
+            //        if (list[j] == null || !list[j].activeSelf) {
+            //            list.RemoveAt(j);
+            //        }
+            //    }
+            //}
             for (int k = this.m_delayedRemoveObjectHashes.Count - 1; k >= 0; k--) {
                 List<float> delayedRemoveObjectTimers;
                 int index;
