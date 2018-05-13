@@ -362,6 +362,10 @@ namespace PatchworkLauncher {
 				},
 				EnableRaisingEvents = true
 			};
+
+            //UNCOMMENT TO ADD COMMAND LINE ARGUMENTS
+            //process.StartInfo.Arguments = "-force-d3d11";
+
 			process.Exited += delegate {
 				State.Value = LaunchManagerState.Idle;
 			};
