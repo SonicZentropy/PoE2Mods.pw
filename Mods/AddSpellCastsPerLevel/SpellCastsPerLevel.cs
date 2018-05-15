@@ -8,9 +8,14 @@ namespace ResetEmpowerAndSpellsMod
     [ModifiesType("Game.SpellMax")]
     class SpellCastsPerLevel : Game.SpellMax
     {
+        
+
         [ModifiesMember("GetSpellCastMax")]
         public OnyxInt GetSpellCastMaxNew(CharacterStats caster, CharacterClass spellClass, int spellLevel)
 		{
+            // Change this to change how many bonus spell casts you get per level
+            int ModdedSpellCastsPerLevel = 2; 
+
 			OnyxInt onyxInt = OnyxInt.PositiveInfinity;
 			if (caster != null && spellLevel >= 1)
 			{
@@ -21,7 +26,7 @@ namespace ResetEmpowerAndSpellsMod
 				}
 				if (onyxInt > 0)
 				{
-					onyxInt += caster.GetBonusSpellCasts(spellClass, spellLevel) + 2;
+					onyxInt += caster.GetBonusSpellCasts(spellClass, spellLevel) + ModdedSpellCastsPerLevel;
 				}
 			}
 			return onyxInt;

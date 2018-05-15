@@ -53,6 +53,10 @@ Once you've successfully built, you'll find your mods inside of each of the Mod 
   * MulticlassPenaltyRemover - Experimentation mod.  This removes the level penalty to accessing each tier of class ability at levelup, so you gain them at the same rate as a single classed character.  This obviously makes the character insanely OP, and given that the game is apparently already really easy, you probably don't want to use this for an actual playthrough.  I made it because I always reroll a million times in these games and wanted to test a bunch of builds rapidly with minimal trouble.
   * DisableAutosave - It disables autosave!
   * ResetEmpowerAndSpells - This instantly restores all empower points and/or spells/abilities for all selected characters.  Select 1 or more characters, then press Ctrl + E to restore Empower points and press Ctrl + S to restore spellcasts/abilities.  This restores special stuff as well, like Cipher focus and Chanter phrases.
+  * AddSpellCastsPerLevel - Adds additional spell casts per encounter for each tier, by request.  It's set at 2/level right now, but easy to change in the code.  You can see the proper variable at the top of the mod's replacement method.
+  * CameraZoomMod - Removes zoom out limit, yay.
+  * DifficultyIconsMod - Contributor mod, 5 stars.  Adds zone difficulty icons back to areas that setting Level Scaling removed them for no good reason.
+  * DifficultyIconsAlways - Same as previous, except also for game difficulties and sticks 'em back onto the tooltips on individual enemies.   
 
 # STEAM ACHIEVEMENTS
 
@@ -73,6 +77,9 @@ There are 2 Console Commands already built into the game.
 
 
 # RELEASE NOTES
+
+1.30 - Lots of new mods!  First up, DifficultyIconsMod from our first official contributor other than me, thanks man!  Fixes not having difficulty icons when you scale levels, totally awesome.  I added a companion mod that adds onto DifficultyIconsMod called DifficultyIconsAlways which also ignores difficulty level in addition to scaling, so you always get difficulty icons on any difficulty (I'm playing on PotD and hate not having them).  
+I added another request that bumps up the number of spells from each tier you can cast in a fight (set at 2 right now), and an unlocked camera zoom which feels so much better. 
 
 1.20 - Added autosave disable and the requested spell/empower reset hotkeys.
 
