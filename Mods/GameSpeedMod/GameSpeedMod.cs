@@ -32,6 +32,9 @@ namespace TyrannyMods.pw
         [NewMember]
         GameSpeedState gameSpeed = GameSpeedState.NORMAL;
 
+        [NewMember]
+        float OutOfCombatTimeScale;
+
         [ModifiesMember("ToggleFast")]
         public void ToggleFastNew()
         {
@@ -91,9 +94,11 @@ namespace TyrannyMods.pw
             else if (Cutscene.CutsceneActive || Onyx.SingletonBehavior<ConversationManager>.Instance.IsConversationOrSIRunning()) {
                 Time.timeScale = 1f;
             }
-            //else if (GameState.InCombat) {
-            //    Time.timeScale = GameState.Option.CombatSpeed;
-            //}
+            else if (GameState.InCombat && this.TimeScale >1.1f) {
+                //Time.timeScale = GameState.Option.CombatSpeed;
+                //In combat, need to cache the old and rescale
+                this.TimeScale = 1.0f;
+            }
             else {
                 Time.timeScale = this.TimeScale;
             }
@@ -110,12 +115,7 @@ namespace TyrannyMods.pw
             float num = 0.2f;
             TimeController.m_smoothUnscaledDeltaTime = num * TimeController.UnscaledDeltaTime + (1f - num) * TimeController.m_previousSmoothUnscaledDeltaTime;
             TimeController.m_previousSmoothUnscaledDeltaTime = TimeController.m_smoothUnscaledDeltaTime;
-            //if (!this.CanUseSlowMode && this.TimeScale == this.SlowTime) {
-            //    this.TimeScale = 1f;
-            //}
-            //if (!this.CanUseFastMode && this.TimeScale == this.FastTime) {
-            //    this.TimeScale = 1f;
-            //}
+            
             if (!GameState.IsLoading) {
                 this.UpdateTimeScale();
             }
@@ -133,8 +133,8 @@ namespace TyrannyMods.pw
                 }
                 else if (GameInput.GetControlDown(MappedControl.FAST_TOGGLE, true)) {
                     if (!UltraFastModeEngaged) {
-                        this.TimeScale = 10.0f;
-                        gameSpeed = GameSpeedState.TEN;
+                        this.TimeScale = 6.0f;
+                        gameSpeed = GameSpeedState.SIX;
                         UltraFastModeEngaged = true;
                     }
                     else {
@@ -143,25 +143,8 @@ namespace TyrannyMods.pw
                         UltraFastModeEngaged = false;
                     }
                 }
-                //else if (GameInput.GetControlDown(MappedControl.GAME_SPEED_CYCLE, true)) {
-                //    //Debug.LogError("GAME SPEED CYCLE");
-                //    if (this.Fast) {
-                //        this.Slow = true;
-                //    }
-                //    else if (this.Slow) {
-                //        this.Slow = false;
-                //    }
-                //    else if (this.CanUseFastMode) {
-                //        this.Fast = true;
-                //    }
-                //    else if (this.CanUseSlowMode) {
-                //        this.Slow = true;
-                //    }
-                //}
             }
         }
-
-
     }
 }
 

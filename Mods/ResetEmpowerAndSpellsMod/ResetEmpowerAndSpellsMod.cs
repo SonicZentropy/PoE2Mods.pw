@@ -21,8 +21,8 @@ namespace ResetEmpowerAndSpellsMod
         {
             //base.OnyxUpdate();
 
-            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.E)) {
-                Game.Console.AddMessage("Pressed LCtrl and E to reset Empower");
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.E)) {
+                Game.Console.AddMessage("Reset Empower");
 
                 //SingletonBehavior<PartyManager>.Instance.GetSelectedPartyMemberGameObjects()
 
@@ -40,8 +40,8 @@ namespace ResetEmpowerAndSpellsMod
                 }
             }
 
-            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S)) {
-                Game.Console.AddMessage("Pressed LCtrl and S to reset Spellcasts");
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.S)) {
+                Game.Console.AddMessage("Reset Spellcasts");
                 var selchars = m_selectedCharacters;
                 if (selchars != null) // there's a selected char
                 {
