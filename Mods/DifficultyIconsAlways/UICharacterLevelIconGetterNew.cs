@@ -59,7 +59,7 @@ namespace DifficultyIconsAlways
             int characterLevel = ((IHasCharacterClasses)arg).GetCharacterLevel();
             CharacterStats component = ComponentUtils.GetComponent<CharacterStats>(GameState.PlayerCharacter);
             if (component) {
-                //Game.Console.AddMessage("Level diff is: Enemy: " + characterLevel + " and Player: " + component.Level);
+                Game.Console.AddMessage("Level diff is: Enemy: " + characterLevel + " and Player: " + component.Level);
                 LevelDifficultyIcons difficultyIcons = GlobalGameSettingsGameData.Instance.CombatSettingsComponent.GetDifficultyIcons(component.Level, characterLevel);
                 if (difficultyIcons != null) {
                     return difficultyIcons.IconName;

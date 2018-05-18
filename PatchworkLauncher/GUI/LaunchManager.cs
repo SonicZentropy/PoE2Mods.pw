@@ -635,21 +635,24 @@ namespace PatchworkLauncher {
 
 					fileProgress.Current.Value++;
 					fileProgress.TaskText.Value = "Writing Assembly";
+                    #if !DEBUG //Fucking PEVerify kills debugging speed, F OFF.
 					if (Environment.OSVersion.Platform == PlatformID.Win32NT) {
 						fileProgress.TaskText.Value = "Running PEVerify...";
 						var targetFolder = Path.GetDirectoryName(targetFile);
 						try {
+                            
 							var peOutput = patcher.RunPeVerify(new PEVerifyInput {
 								AssemblyResolutionFolder = targetFolder,
 								IgnoreErrors = AppInfo.IgnorePEVerifyErrors.ToList()
 							});
-							logger.Information(peOutput.Output);
+                            logger.Information(peOutput.Output);
+                            						
 						}
 						catch (Exception ex) {
 							logger.Error(ex, "Failed to run PEVerify on the assembly.");
 						}
 					}
-
+                    #endif	
 					try {
 						patcher.WriteTo(backupModified);
 					}

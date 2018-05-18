@@ -115,7 +115,11 @@ namespace Patchwork.Engine {
 			TypeReference targetTypeRef;
 
 			var yourTypeDef = yourTypeRef.Resolve();
-			if (yourTypeDef != null && yourTypeDef.Module.Assembly.IsPatchingAssembly() && yourTypeDef.IsDisablePatching()) {
+
+            var ispatching = yourTypeDef.Module.Assembly.IsPatchingAssembly();
+            var disablepatching = yourTypeDef.IsDisablePatching();
+
+			if (yourTypeDef != null && ispatching && disablepatching) {
 				Log_trying_to_fix_disabled_reference("type", yourTypeRef);
 			}
 			TypeReference targetInnerTypeRef;

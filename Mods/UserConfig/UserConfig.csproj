@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{71438614-EE21-4A29-950C-9A1028091E1E}</ProjectGuid>
+    <ProjectGuid>{7863CDD8-D462-45C1-9EC6-9C949551C102}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GameSpeedMod</RootNamespace>
-    <AssemblyName>GameSpeedMod.pw</AssemblyName>
+    <RootNamespace>UserConfig</RootNamespace>
+    <AssemblyName>UserConfig</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,30 +41,13 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="UnityEngine">
       <HintPath>..\..\ReferenceFiles\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameSpeedMod.cs" />
-    <Compile Include="POE2PatchInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserConfig.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Patchwork.Attributes\Patchwork.Attributes.csproj">
-      <Project>{47dcbaf7-f2e6-486c-8887-fa41c271b74e}</Project>
-      <Name>Patchwork.Attributes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Patchwork.Engine\Patchwork.Engine.csproj">
-      <Project>{565c269a-f5eb-4bbe-86e5-75c8d4e1cdf7}</Project>
-      <Name>Patchwork.Engine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\PatchworkLauncher\PatchworkLauncher.csproj">
-      <Project>{6c30ded5-0078-48ac-91bb-a0a05a1fc899}</Project>
-      <Name>PatchworkLauncher</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
