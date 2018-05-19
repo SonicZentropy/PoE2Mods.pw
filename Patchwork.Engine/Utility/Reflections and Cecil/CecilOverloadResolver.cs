@@ -101,8 +101,8 @@ namespace Patchwork.Engine.Utility {
 		/// <param name="similarMethod">A reference to the similar method.</param>
 		/// <param name="altName">Optionally, find a method similar to <paramref name="similarMethod"/>, but with this name instead.</param>
 		/// <returns></returns>
-		public static MethodDefinition GetMethodLike(this TypeDefinition containingType, MethodReference similarMethod,	string altName = null) {
-            Console.WriteLine("Method like");
+		public static MethodDefinition GetMethodLike(this TypeDefinition containingType, MethodReference similarMethod,
+			string altName = null) {
 			return
 				containingType.GetMethods(altName ?? similarMethod.Name, similarMethod.Parameters.Select(x => x.ParameterType),
 					similarMethod.GenericParameters.Count, similarMethod.ReturnType)

@@ -98,8 +98,7 @@ namespace Patchwork.Engine {
 			}
 			var t = typeof (T);
 			if (t == typeof(MethodDefinition)) {
-                var md = yourMemberDef as MethodDefinition;
-				return targetType.GetMethodLike(md, targetMemberName) as T;
+				return targetType.GetMethodLike(yourMemberDef as MethodDefinition, targetMemberName) as T;
 			}
 			if (t == typeof(PropertyDefinition)) {
 				return targetType.GetPropertyLike(yourMemberDef as PropertyDefinition, targetMemberName) as T;

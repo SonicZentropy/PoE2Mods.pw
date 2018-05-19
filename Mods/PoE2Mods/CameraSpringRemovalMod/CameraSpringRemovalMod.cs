@@ -19,10 +19,7 @@ namespace POE2Mods
             get {
                 //////////////////////////////////////////
                 //THIS LINE THROWS THE EXCEPTION
-                //List<GameObject> list = this.m_trackedObjects[(Game.SmartCamera.TrackingTargetType.ActivePartyMember)];
-                var apm = TrackingTargetType.ActivePartyMember;
-                List<GameObject> list;
-                //var ob = m_trackedObjects.TryGetValue(apm, out list);
+                
                 return MovementSpringTune * 2f;
         
                 //Original
@@ -43,21 +40,21 @@ namespace POE2Mods
         {
             //List<GameObject> list = this.m_trackedObjects[(Game.SmartCamera.TrackingTargetType)0];
             //base.OnyxLateUpdate();
-            //this.m_preventTrackingTimer = Mathf.Max(0f, this.m_preventTrackingTimer - Time.deltaTime);
-            //m_timeToUseStrongSpring = 50.0f;
-            //m_timeToAllowMovementLookAhead = 0.0f;
-            //if (GameInput.GetControl(MappedControl.MOUSE_CAMERA_LOOKAHEAD, false)) {
-            //    this.m_preventTrackingTimer = 0f;
-            //    //this.m_timeToUseStrongSpring = this.TimeToAllowStrongSpringMovementAfterNoMovement;
-            //}
+            this.m_preventTrackingTimer = Mathf.Max(0f, this.m_preventTrackingTimer - Time.deltaTime);
+            m_timeToUseStrongSpring = 50.0f;
+            m_timeToAllowMovementLookAhead = 0.0f;
+            if (GameInput.GetControl(MappedControl.MOUSE_CAMERA_LOOKAHEAD, false)) {
+                this.m_preventTrackingTimer = 0f;
+                //this.m_timeToUseStrongSpring = this.TimeToAllowStrongSpringMovementAfterNoMovement;
+            }
            
-            ////if (!this.IsAnyPartyMemberMoving()) {
-            ////    //this.m_timeToUseStrongSpring = Mathf.Max(0f, this.m_timeToUseStrongSpring - Time.deltaTime);
-            ////    this.m_timeToAllowMovementLookAhead = Mathf.Max(0f, this.m_timeToAllowMovementLookAhead - Time.deltaTime);
-            ////}
-            //if (this.m_mouseBiasBeingTracked) {
-            //    //this.m_timeToUseStrongSpring = Mathf.Max(this.m_timeToUseStrongSpring, 2f);
+            //if (!this.IsAnyPartyMemberMoving()) {
+            //    //this.m_timeToUseStrongSpring = Mathf.Max(0f, this.m_timeToUseStrongSpring - Time.deltaTime);
+            //    this.m_timeToAllowMovementLookAhead = Mathf.Max(0f, this.m_timeToAllowMovementLookAhead - Time.deltaTime);
             //}
+            if (this.m_mouseBiasBeingTracked) {
+                //this.m_timeToUseStrongSpring = Mathf.Max(this.m_timeToUseStrongSpring, 2f);
+            }
 
             ////public enum TrackingTargetType
             ////{
@@ -72,58 +69,58 @@ namespace POE2Mods
             ////Count = 8
             ////}
 
+            for (int i = 0; i < this.m_trackedObjects.Count; i++) {
+                List<GameObject> list = this.m_trackedObjects[(SmartCamera.TrackingTargetType)i];
+
+                //remove everything except party members
+                if (i >= 2) {
+                    for (int j = list.Count - 1; j >= 0; j--) {                   
+                        list.RemoveAt(j);                   
+                    }
+                }
+                else {
+                    for (int j = list.Count - 1; j >= 0; j--) {
+                        if (list[j] == null || !list[j].activeSelf) {
+                            list.RemoveAt(j);
+                        }
+                    }
+                }
+            }
+
             //for (int i = 0; i < this.m_trackedObjects.Count; i++) {
             //    List<GameObject> list = this.m_trackedObjects[(SmartCamera.TrackingTargetType)i];
-
-            //    //remove everything except party members
-            //    if (i >= 2) {
-            //        for (int j = list.Count - 1; j >= 0; j--) {                   
-            //            list.RemoveAt(j);                   
-            //        }
-            //    }
-            //    else {
-            //        for (int j = list.Count - 1; j >= 0; j--) {
-            //            if (list[j] == null || !list[j].activeSelf) {
-            //                list.RemoveAt(j);
-            //            }
+            //    for (int j = list.Count - 1; j >= 0; j--) {
+            //        if (list[j] == null || !list[j].activeSelf) {
+            //            list.RemoveAt(j);
             //        }
             //    }
             //}
-
-            ////for (int i = 0; i < this.m_trackedObjects.Count; i++) {
-            ////    List<GameObject> list = this.m_trackedObjects[(SmartCamera.TrackingTargetType)i];
-            ////    for (int j = list.Count - 1; j >= 0; j--) {
-            ////        if (list[j] == null || !list[j].activeSelf) {
-            ////            list.RemoveAt(j);
-            ////        }
-            ////    }
-            ////}
-            //for (int k = this.m_delayedRemoveObjectHashes.Count - 1; k >= 0; k--) {
-            //    List<float> delayedRemoveObjectTimers;
-            //    int index;
-            //    (delayedRemoveObjectTimers = this.m_delayedRemoveObjectTimers)[index = k] = delayedRemoveObjectTimers[index] - Time.deltaTime;
-            //    if (this.m_delayedRemoveObjectTimers[k] <= 0f) {
-            //        this.RemoveGameObjectToFollow(this.m_delayedRemoveObjectHashes[k], this.m_delayedRemoveObjectTypes[k]);
-            //        this.m_delayedRemoveObjectHashes.RemoveAt(k);
-            //        this.m_delayedRemoveObjectTimers.RemoveAt(k);
-            //        this.m_delayedRemoveObjectTypes.RemoveAt(k);
-            //    }
-            //}
-            //this.m_timeUntilRefilterPartyTracking -= TimeController.UnscaledDeltaTime;
-            //if (this.m_timeUntilRefilterPartyTracking <= 0f) {
-            //    this.FilterPartyMembersToTrack();
-            //}
-            //if (this.LerpFocusPosition) {
-            //    Vector3 hitPoint = this.GetHitPoint(this.GetFocusWorldLocation());
-            //    this.m_currentFocusPosition = Vector3.Lerp(this.m_currentFocusPosition, hitPoint, Mathf.Clamp01(this.GetDeltaTime() * (this.CurrentFocusLerpStrengh)));
-            //    //this.m_currentFocusPosition = Vector3.Lerp(this.m_currentFocusPosition, hitPoint, 1.0f);
-            //}
-            //else {
-            //    this.m_currentFocusPosition = this.GetHitPoint(this.GetFocusWorldLocation());
-            //}
-            //if (SmartCamera.DrawDebug) {
-            //    this.DrawCameraDebug();
-            //}
+            for (int k = this.m_delayedRemoveObjectHashes.Count - 1; k >= 0; k--) {
+                List<float> delayedRemoveObjectTimers;
+                int index;
+                (delayedRemoveObjectTimers = this.m_delayedRemoveObjectTimers)[index = k] = delayedRemoveObjectTimers[index] - Time.deltaTime;
+                if (this.m_delayedRemoveObjectTimers[k] <= 0f) {
+                    this.RemoveGameObjectToFollow(this.m_delayedRemoveObjectHashes[k], this.m_delayedRemoveObjectTypes[k]);
+                    this.m_delayedRemoveObjectHashes.RemoveAt(k);
+                    this.m_delayedRemoveObjectTimers.RemoveAt(k);
+                    this.m_delayedRemoveObjectTypes.RemoveAt(k);
+                }
+            }
+            this.m_timeUntilRefilterPartyTracking -= TimeController.UnscaledDeltaTime;
+            if (this.m_timeUntilRefilterPartyTracking <= 0f) {
+                this.FilterPartyMembersToTrack();
+            }
+            if (this.LerpFocusPosition) {
+                Vector3 hitPoint = this.GetHitPoint(this.GetFocusWorldLocation());
+                this.m_currentFocusPosition = Vector3.Lerp(this.m_currentFocusPosition, hitPoint, Mathf.Clamp01(this.GetDeltaTime() * (this.CurrentFocusLerpStrengh)));
+                //this.m_currentFocusPosition = Vector3.Lerp(this.m_currentFocusPosition, hitPoint, 1.0f);
+            }
+            else {
+                this.m_currentFocusPosition = this.GetHitPoint(this.GetFocusWorldLocation());
+            }
+            if (SmartCamera.DrawDebug) {
+                this.DrawCameraDebug();
+            }
         }
     }
 }

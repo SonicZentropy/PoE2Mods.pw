@@ -46,9 +46,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchievementEnablerMod\AchievementEnablerMod.cs" />
+    <Compile Include="AchievementEnablerMod\AchievementTrackerNew.cs" />
+    <Compile Include="AchievementEnablerMod\CommandLineRunNew.cs" />
+    <Compile Include="AddSpellCastsPerLevelMod\SpellCastsPerLevel.cs" />
     <Compile Include="CameraSpringRemovalMod\CameraSpringRemovalMod.cs" />
+    <Compile Include="CameraZoomMod\SyncCameraOrthoSettingsNew.cs" />
+    <Compile Include="CipherFocusMod\CipherFocus.cs" />
+    <Compile Include="DifficultyIconsMod\DifficultyIconsAlwaysMod.cs" />
+    <Compile Include="DifficultyIconsMod\UICharacterLevelIconGetterNew.cs" />
+    <Compile Include="DisableAutosaveMod\DisableAutosaveMod.cs" />
+    <Compile Include="GameSpeedMod\GameSpeedMod.cs" />
+    <Compile Include="GameSpeedMod\UserConfig.cs" />
+    <Compile Include="MulticlassPenaltyRemoverMod\MulticlassPenaltyRemover.cs" />
     <Compile Include="POE2PatchInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResetEmpowerAndSpellsMod\ResetEmpowerAndSpellsMod.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Patchwork.Attributes\Patchwork.Attributes.csproj">
@@ -64,17 +77,7 @@
       <Name>PatchworkLauncher</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AchievementEnablerMod\" />
-    <Folder Include="AddSpellCastsPerLevelMod\" />
-    <Folder Include="CameraZoomMod\" />
-    <Folder Include="CipherFocusMod\" />
-    <Folder Include="DifficultyIconsMod\" />
-    <Folder Include="DisableAutosaveMod\" />
-    <Folder Include="GameSpeedMod\" />
-    <Folder Include="MulticlassPenaltyRemoverMod\" />
-    <Folder Include="ResetEmpowerAndSpellsMod\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo d | xcopy /F /y $(TargetPath) $(SolutionDir)\PatchworkLauncher\bin\$(ConfigurationName)\Mods</PostBuildEvent>
