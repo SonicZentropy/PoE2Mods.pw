@@ -47,13 +47,17 @@ namespace PoE2Mods
         [NewMember]
         float ToggleMaxGameSpeed;
 
+        [NewMember] 
+        float MaxGameSpeedSetting;
+
 
         [ModifiesMember("OnyxStart")]
         public void OnyxStartNew()
         {
             UseMod = UserConfig.GetValueAsBool("GameSpeedMod", "enableMod");
-            ToggleMaxGameSpeed = UserConfig.GetValueAsFloat("GameSpeedMod", "toggleMaxGameSpeed");
-            Config = UseMod.ToString();
+            ToggleMaxGameSpeed = UserConfig.GetValueAsFloat("GameSpeedMod", "toggleGameSpeed");
+            MaxGameSpeedSetting = UserConfig.GetValueAsFloat("GameSpeedMod", "maxGameSpeed");
+            Config = MaxGameSpeedSetting.ToString();
 
             this.m_TimeScale = this.NormalTime;
         }
@@ -78,21 +82,14 @@ namespace PoE2Mods
                 return;
             }
 
-            switch (gameSpeed) {
-                case GameSpeedState.SLOW:
-                    this.TimeScale = 1.0f;
-                    gameSpeed = GameSpeedState.NORMAL;
-                    break;
-                case GameSpeedState.NORMAL:
-                    this.TimeScale = 2.0f;
-                    gameSpeed = GameSpeedState.DOUBLE;
-                    break;
-                case GameSpeedState.DOUBLE:
-                    this.TimeScale = 6.0f;
-                    gameSpeed = GameSpeedState.SIX;
-                    break;
-                default:
-                    break;
+            if (TimeScale < 0.9f) {
+                TimeScale = 1.0f;
+            } else if (TimeScale < 1.9f) {
+                TimeScale = 2.0f;
+            } else if (TimeScale < 5.9f) {
+                TimeScale = 6.0f;
+            } else if (TimeScale < 6.1f) {
+                TimeScale = MaxGameSpeedSetting;
             }
 
             this.UpdateTimeScale();
@@ -118,27 +115,18 @@ namespace PoE2Mods
                 orig_ToggleSlow();
                 return;
             }
-            switch (gameSpeed) {
-                case GameSpeedState.TEN:
-                    this.TimeScale = 6.0f;
-                    gameSpeed = GameSpeedState.SIX;
-                    UltraFastModeEngaged = false;
-                    break;
-                case GameSpeedState.SIX:
-                    this.TimeScale = 2.0f;
-                    gameSpeed = GameSpeedState.DOUBLE;
-                    break;
-                case GameSpeedState.DOUBLE:
-                    this.TimeScale = 1.0f;
-                    gameSpeed = GameSpeedState.NORMAL;
-                    break;
-                case GameSpeedState.NORMAL:
-                    this.TimeScale = 0.2f;
-                    gameSpeed = GameSpeedState.SLOW;
-                    break;
-                default:
-                    break;
+
+            if (TimeScale > 6.1f) {
+                TimeScale = 6.0f;
+            } else if (TimeScale > 3.0f) {
+                TimeScale = 2.0f;
+            } else if (TimeScale > 1.1f) {
+                TimeScale = 1.0f;
             }
+            else {
+                TimeScale = 0.2f;
+            }
+            
             this.UpdateTimeScale();
         }
 
@@ -172,7 +160,7 @@ namespace PoE2Mods
             else if (Cutscene.CutsceneActive || Onyx.SingletonBehavior<ConversationManager>.Instance.IsConversationOrSIRunning()) {
                 Time.timeScale = 1f;
             }
-            else if (GameState.InCombat && this.TimeScale > 1.1f) {
+            else if (GameState.InCombat && this.TimeScale > 2.1f) {
                 //Time.timeScale = GameState.Option.CombatSpeed;
                 //In combat, need to cache the old and rescale
                 this.TimeScale = 1.0f;
@@ -180,6 +168,8 @@ namespace PoE2Mods
             else {
                 Time.timeScale = this.TimeScale;
             }
+
+            Config = TimeScale.ToString();
         }
 
         [NewMember]
@@ -238,7 +228,7 @@ namespace PoE2Mods
                 orig_OnyxUpdate();
                 return;
             }
-            //Game.Console.AddMessage(Config);
+            //Game.Console.AddMessage("CurrentSpeed: " + Config);
             this.RealtimeSinceStartupThisFrame = Time.realtimeSinceStartup;
             this.GameTimeSinceStartup += Time.deltaTime;
             float num = 0.2f;
@@ -263,12 +253,12 @@ namespace PoE2Mods
                 else if (GameInput.GetControlDown(MappedControl.FAST_TOGGLE, true)) {
                     if (!UltraFastModeEngaged) {
                         this.TimeScale = ToggleMaxGameSpeed;
-                        gameSpeed = GameSpeedState.SIX;
+                        //gameSpeed = GameSpeedState.SIX;
                         UltraFastModeEngaged = true;
                     }
                     else {
                         this.TimeScale = 1.0f;
-                        gameSpeed = GameSpeedState.NORMAL;
+                        //gameSpeed = GameSpeedState.NORMAL;
                         UltraFastModeEngaged = false;
                     }
                 }
