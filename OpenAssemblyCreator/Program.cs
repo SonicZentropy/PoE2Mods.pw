@@ -54,11 +54,9 @@ the original state of the assembly.
 				foreach (var field in type.Fields) {
 					field.IsPublic = true;
 					field.IsInitOnly = false;
-                    
 				}
 				foreach (var method in type.Methods) {
 					method.IsPublic = true;
-                    method.IsAssembly = false;
 				}
 				if (modifyEvents) {
 					foreach (var vent in type.Events) {
@@ -68,7 +66,6 @@ the original state of the assembly.
 					}
 				}
 				type.IsSealed = false;
-                
 				if (type.IsNested) {
 					type.IsNestedPublic = true;
 				} else {
