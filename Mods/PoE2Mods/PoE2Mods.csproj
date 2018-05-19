@@ -81,7 +81,9 @@
       <Name>PatchworkLauncher</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="TestIniFile.ini" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo d | xcopy /F /y $(TargetPath) $(SolutionDir)\PatchworkLauncher\bin\$(ConfigurationName)\Mods</PostBuildEvent>

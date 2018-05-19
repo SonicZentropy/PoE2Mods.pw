@@ -8,6 +8,7 @@
 using Game;
 using Game.UI;
 using Patchwork;
+using PoE2Mods;
 using UnityEngine;
 //using SDK;
 
@@ -19,12 +20,25 @@ namespace TyrannyMods.pw
     [ModifiesType]
     public class CharacterProgressionGameDataNew : Game.GameData.CharacterProgressionGameData
     {            
+        [NewMember]
+        static bool ConfigHasBeenInit;
+
+        [NewMember]
+        static bool UseMod;
 
         [ModifiesMember("GetClassPowerLevel")]
         public int GetClassPowerLevelNew(bool isMulticlassed, int characterLevel)
 		{
-            // this is literally the only required changed line
-            isMulticlassed = false; 
+		    if (!ConfigHasBeenInit) {
+		        ConfigHasBeenInit = true;
+		        UseMod = UserConfig.GetValueAsBool("MulticlassPenaltyRemover", "enableMod");
+		    }
+
+		    if (UseMod) {
+		        // this is literally the only required changed line
+		        isMulticlassed = false; 
+		    }
+            
 			int charLevelAsIndex = characterLevel - 1;
 			if (charLevelAsIndex < 0)
 			{

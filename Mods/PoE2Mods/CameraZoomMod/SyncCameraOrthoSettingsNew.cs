@@ -10,8 +10,12 @@ using UnityEngine;
 namespace PoE2Mods
 {
     [ModifiesType("Game.SyncCameraOrthoSettings")]
-    public class SyncCameraOrthoSettingsNew : SyncCameraOrthoSettings
-    {
+    public class SyncCameraOrthoSettingsNew : SyncCameraOrthoSettings {
+        
+        [NewMember] private float MaxZoom;
+        [NewMember]
+        bool ConfigHasBeenInit;
+
         [ModifiesMember("SetZoomLevel")]
         public void SetZoomLevelNew(float zoomLevel, bool force)
         {
@@ -22,7 +26,7 @@ namespace PoE2Mods
                 this.m_targetZoomLevel = zoomLevel;
             }
             else {
-                this.m_targetZoomLevel = Mathf.Clamp(zoomLevel, GameState.Option.MinZoom, 3.5f);
+                this.m_targetZoomLevel = Mathf.Clamp(zoomLevel, GameState.Option.MinZoom, MaxZoom);
                 //this.m_targetZoomLevel = zoomLevel;
             }
             if (force) {
@@ -35,6 +39,13 @@ namespace PoE2Mods
         [ModifiesMember("Update")]
         public void UpdateNew()
         {
+
+            if (!ConfigHasBeenInit) {
+                ConfigHasBeenInit = true;
+                MaxZoom = UserConfig.GetValueAsFloat("CameraZoomMod","MaxZoom");
+                m_targetZoomLevel = 1.0f;
+            }
+
             if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Z)) {
                 m_targetZoomLevel = 1.0f;
             }

@@ -44,11 +44,15 @@ namespace PoE2Mods
         [NewMember]
         bool UseMod;
 
+        [NewMember]
+        float ToggleMaxGameSpeed;
+
 
         [ModifiesMember("OnyxStart")]
         public void OnyxStartNew()
         {
             UseMod = UserConfig.GetValueAsBool("GameSpeedMod", "enableMod");
+            ToggleMaxGameSpeed = UserConfig.GetValueAsFloat("GameSpeedMod", "toggleMaxGameSpeed");
             Config = UseMod.ToString();
 
             this.m_TimeScale = this.NormalTime;
@@ -69,7 +73,7 @@ namespace PoE2Mods
         [ModifiesMember("ToggleFast")]
         public void ToggleFastNew()
         {
-            if (!UserConfig.GetValueAsBool("GameSpeedMod", "enableMod")) {
+            if (!UseMod) {
                 orig_ToggleFast();
                 return;
             }
@@ -110,7 +114,7 @@ namespace PoE2Mods
         [ModifiesMember("ToggleSlow")]
         public void ToggleSlowNew()
         {
-            if (!UserConfig.GetValueAsBool("GameSpeedMod", "enableMod")) {
+            if (!UseMod) {
                 orig_ToggleSlow();
                 return;
             }
@@ -158,7 +162,7 @@ namespace PoE2Mods
         [ModifiesMember("UpdateTimeScale")]
         public void UpdateTimeScaleNew()
         {
-            if (!UserConfig.GetValueAsBool("GameSpeedMod", "enableMod")) {
+            if (!UseMod) {
                 orig_UpdateTimeScale();
                 return;
             }
@@ -230,11 +234,11 @@ namespace PoE2Mods
         [ModifiesMember("OnyxUpdate")]
         public void OnyxUpdateNew()
         {
-            if (!UserConfig.GetValueAsBool("GameSpeedMod", "enableMod")) {
+            if (!UseMod) {
                 orig_OnyxUpdate();
                 return;
             }
-            Game.Console.AddMessage(Config);
+            //Game.Console.AddMessage(Config);
             this.RealtimeSinceStartupThisFrame = Time.realtimeSinceStartup;
             this.GameTimeSinceStartup += Time.deltaTime;
             float num = 0.2f;
@@ -258,7 +262,7 @@ namespace PoE2Mods
                 }
                 else if (GameInput.GetControlDown(MappedControl.FAST_TOGGLE, true)) {
                     if (!UltraFastModeEngaged) {
-                        this.TimeScale = 6.0f;
+                        this.TimeScale = ToggleMaxGameSpeed;
                         gameSpeed = GameSpeedState.SIX;
                         UltraFastModeEngaged = true;
                     }
