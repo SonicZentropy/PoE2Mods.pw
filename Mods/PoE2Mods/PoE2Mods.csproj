@@ -57,13 +57,17 @@
     <Compile Include="DifficultyIconsMod\UICharacterLevelIconGetterNew.cs" />
     <Compile Include="DisableAutosaveMod\DisableAutosaveMod.cs" />
     <Compile Include="GameSpeedMod\GameSpeedMod.cs" />
-    <Compile Include="GameSpeedMod\UserConfig.cs" />
+    <Compile Include="UserConfig\UserConfig.cs" />
     <Compile Include="MulticlassPenaltyRemoverMod\MulticlassPenaltyRemover.cs" />
     <Compile Include="POE2PatchInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResetEmpowerAndSpellsMod\ResetEmpowerAndSpellsMod.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ini-parser-2.5.2\src\IniFileParser\INIFileParser.csproj">
+      <Project>{5e46dcf4-c473-4171-9f9b-f3910b5ec407}</Project>
+      <Name>INIFileParser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Patchwork.Attributes\Patchwork.Attributes.csproj">
       <Project>{47dcbaf7-f2e6-486c-8887-fa41c271b74e}</Project>
       <Name>Patchwork.Attributes</Name>

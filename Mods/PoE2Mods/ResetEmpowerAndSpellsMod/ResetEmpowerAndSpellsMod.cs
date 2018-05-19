@@ -10,16 +10,35 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Game.GameData;
 
-namespace ResetEmpowerAndSpellsMod
+
+namespace PoE2Mods
 {
 
     [ModifiesType("Game.UI.UIAbilityBar")]
     public class UIAbilityBarNew : Game.UI.UIAbilityBar
     {
+        [NewMember]
+        [DuplicatesBody("OnyxUpdate")]
+        public void orig_OnyxUpdate() { }
+
+        [NewMember]
+        bool ConfigHasBeenInit;
+
+        [NewMember]
+        bool UseMod;
+
         [ModifiesMember("OnyxUpdate")]
         protected void OnyxUpdateNew()
         {
-            //base.OnyxUpdate();
+            // Have to init this way because class initialization doesn't work
+            if (!ConfigHasBeenInit) {
+                ConfigHasBeenInit = true;
+                UseMod = UserConfig.GetValueAsBool("ResetEmpowerAndSpellsMod","enableMod");
+            }
+            if (! UseMod) {
+                orig_OnyxUpdate();
+                return;
+            }
 
             if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.E)) {
                 Game.Console.AddMessage("Reset Empower");

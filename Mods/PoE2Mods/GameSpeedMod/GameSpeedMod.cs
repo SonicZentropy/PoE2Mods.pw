@@ -7,7 +7,10 @@
 
 using Game;
 using Game.UI;
+using IniParser;
+using IniParser.Model;
 using Patchwork;
+using System.IO;
 using UnityEngine;
 
 //using SDK;
@@ -18,149 +21,185 @@ namespace PoE2Mods
     /// <summary>
     /// Modifies the game speed toggles to add a new 6x speed.
     /// </summary>
-    [ModifiesType]
-    public class mod_TimeController : Game.TimeController
-    {
-        [NewType]
-        enum GameSpeedState
-        {
-            SLOW,
-            NORMAL,
-            DOUBLE,
-            SIX,
-            TEN
-        }
+    //[ModifiesType]
+    //public class mod_TimeController : Game.TimeController
+    //{
+    //    [NewType]
+    //    enum GameSpeedState
+    //    {
+    //        SLOW,
+    //        NORMAL,
+    //        DOUBLE,
+    //        SIX,
+    //        TEN
+    //    }
 
-        [NewMember]
-        GameSpeedState gameSpeed = GameSpeedState.NORMAL;
+    //    [NewMember]
+    //    GameSpeedState gameSpeed = GameSpeedState.NORMAL;        
 
-        [NewMember]
-        float OutOfCombatTimeScale;
+    //    [NewMember]
+    //    string Config;       
 
-        [NewMember]
-        string Config;
+    //    [NewMember]
+    //    bool UseMod;
 
-        [ModifiesMember("OnyxStart")]
-        public void OnyxStartNew()
-        {
-            //base.OnyxStart();
-            this.m_TimeScale = this.NormalTime;
-            //var uc = new UserConfig();
-            //Config = uc.LoadGameSpeedConfig();
-        }
+    //    [ModifiesMember("OnyxStart")]
+    //    public void OnyxStartNew()
+    //    {
+    //        //base.OnyxStart();
+    //        this.m_TimeScale = this.NormalTime;
+            
+    //        UseMod = UserConfig.GetValueAsBool("GameSpeedMod","enableMod");
+    //        Config = UseMod.ToString();
+    //    }
 
-        [ModifiesMember("ToggleFast")]
-        public void ToggleFastNew()
-        {
-            switch (gameSpeed) {
-                case GameSpeedState.SLOW:
-                    this.TimeScale = 1.0f;
-                    gameSpeed = GameSpeedState.NORMAL;
-                    break;
-                case GameSpeedState.NORMAL:
-                    this.TimeScale = 2.0f;
-                    gameSpeed = GameSpeedState.DOUBLE;
-                    break;
-                case GameSpeedState.DOUBLE:
-                    this.TimeScale = 6.0f;
-                    gameSpeed = GameSpeedState.SIX;
-                    break;
-                default:
-                    break;
-            }
+    //    [NewMember]
+    //    [DuplicatesBody("ToggleFast")]
+    //    public void orig_ToggleFast() { }
 
-            this.UpdateTimeScale();
-        }
+    //    [ModifiesMember("ToggleFast")]
+    //    public void ToggleFastNew()
+    //    {
+    //        if (!UseMod) {
+    //            orig_ToggleFast();
+    //            return;
+    //        }
 
-        [ModifiesMember("ToggleSlow")]
-        public void ToggleSlowNew()
-        {
-            switch (gameSpeed) {
-                case GameSpeedState.TEN:
-                    this.TimeScale = 6.0f;
-                    gameSpeed = GameSpeedState.SIX;
-                    UltraFastModeEngaged = false;
-                    break;
-                case GameSpeedState.SIX:
-                    this.TimeScale = 2.0f;
-                    gameSpeed = GameSpeedState.DOUBLE;
-                    break;
-                case GameSpeedState.DOUBLE:
-                    this.TimeScale = 1.0f;
-                    gameSpeed = GameSpeedState.NORMAL;
-                    break;
-                case GameSpeedState.NORMAL:
-                    this.TimeScale = 0.2f;
-                    gameSpeed = GameSpeedState.SLOW;
-                    break;
-                default:
-                    break;
-            }
-            this.UpdateTimeScale();
-        }
+    //        switch (gameSpeed) {
+    //            case GameSpeedState.SLOW:
+    //                this.TimeScale = 1.0f;
+    //                gameSpeed = GameSpeedState.NORMAL;
+    //                break;
+    //            case GameSpeedState.NORMAL:
+    //                this.TimeScale = 2.0f;
+    //                gameSpeed = GameSpeedState.DOUBLE;
+    //                break;
+    //            case GameSpeedState.DOUBLE:
+    //                this.TimeScale = 6.0f;
+    //                gameSpeed = GameSpeedState.SIX;
+    //                break;
+    //            default:
+    //                break;
+    //        }
 
-        [ModifiesMember("UpdateTimeScale")]
-        public void UpdateTimeScaleNew()
-        {
-            if ((this.m_PlayerPaused || this.m_UiPaused) && !this.ProhibitPause) {
-                Time.timeScale = 0f;
-            }
-            else if (Cutscene.CutsceneActive || Onyx.SingletonBehavior<ConversationManager>.Instance.IsConversationOrSIRunning()) {
-                Time.timeScale = 1f;
-            }
-            else if (GameState.InCombat && this.TimeScale > 1.1f) {
-                //Time.timeScale = GameState.Option.CombatSpeed;
-                //In combat, need to cache the old and rescale
-                this.TimeScale = 1.0f;
-            }
-            else {
-                Time.timeScale = this.TimeScale;
-            }
-        }
+    //        this.UpdateTimeScale();
+    //    }
 
-        [NewMember]
-        bool UltraFastModeEngaged = false;
+    //    [NewMember]
+    //    [DuplicatesBody("ToggleSlow")]
+    //    public void orig_ToggleSlow() { }
 
-        [ModifiesMember("OnyxUpdate")]
-        public void OnyxUpdateNew()
-        {
-            Game.Console.AddMessage(Config);
-            this.RealtimeSinceStartupThisFrame = Time.realtimeSinceStartup;
-            this.GameTimeSinceStartup += Time.deltaTime;
-            float num = 0.2f;
-            TimeController.m_smoothUnscaledDeltaTime = num * TimeController.UnscaledDeltaTime + (1f - num) * TimeController.m_previousSmoothUnscaledDeltaTime;
-            TimeController.m_previousSmoothUnscaledDeltaTime = TimeController.m_smoothUnscaledDeltaTime;
+    //    [ModifiesMember("ToggleSlow")]
+    //    public void ToggleSlowNew()
+    //    {
+    //        if (!UseMod) {
+    //            orig_ToggleSlow();
+    //            return;
+    //        }
+    //        switch (gameSpeed) {
+    //            case GameSpeedState.TEN:
+    //                this.TimeScale = 6.0f;
+    //                gameSpeed = GameSpeedState.SIX;
+    //                UltraFastModeEngaged = false;
+    //                break;
+    //            case GameSpeedState.SIX:
+    //                this.TimeScale = 2.0f;
+    //                gameSpeed = GameSpeedState.DOUBLE;
+    //                break;
+    //            case GameSpeedState.DOUBLE:
+    //                this.TimeScale = 1.0f;
+    //                gameSpeed = GameSpeedState.NORMAL;
+    //                break;
+    //            case GameSpeedState.NORMAL:
+    //                this.TimeScale = 0.2f;
+    //                gameSpeed = GameSpeedState.SLOW;
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //        this.UpdateTimeScale();
+    //    }
 
-            if (!GameState.IsLoading) {
-                this.UpdateTimeScale();
-            }
-            if (UIWindowManager.KeyInputAvailable) {
-                if (GameInput.GetControlDown(MappedControl.RESTORE_SPEED, true)) {
-                    this.TimeScale = this.NormalTime;
-                }
-                else if (GameInput.GetControlDown(MappedControl.COMBAT_SPEED_DOWN, true)) {
-                    this.ToggleSlow();
-                    //Debug.LogError("TOGGLE SLOW");
-                }
-                else if (GameInput.GetControlDown(MappedControl.COMBAT_SPEED_UP, true)) {
-                    this.ToggleFast();
-                    //Debug.LogError("TOGGLE SLOW");
-                }
-                else if (GameInput.GetControlDown(MappedControl.FAST_TOGGLE, true)) {
-                    if (!UltraFastModeEngaged) {
-                        this.TimeScale = 6.0f;
-                        gameSpeed = GameSpeedState.SIX;
-                        UltraFastModeEngaged = true;
-                    }
-                    else {
-                        this.TimeScale = 1.0f;
-                        gameSpeed = GameSpeedState.NORMAL;
-                        UltraFastModeEngaged = false;
-                    }
-                }
-            }
-        }
-    }
+    //    [NewMember]
+    //    [DuplicatesBody("UpdateTimeScale")]
+    //    public void orig_UpdateTimeScale() { }
+
+    //    [ModifiesMember("UpdateTimeScale")]
+    //    public void UpdateTimeScaleNew()
+    //    {
+    //        if (!UseMod) {
+    //            orig_UpdateTimeScale();
+    //            return;
+    //        }
+    //        if ((this.m_PlayerPaused || this.m_UiPaused) && !this.ProhibitPause) {
+    //            Time.timeScale = 0f;
+    //        }
+    //        else if (Cutscene.CutsceneActive || Onyx.SingletonBehavior<ConversationManager>.Instance.IsConversationOrSIRunning()) {
+    //            Time.timeScale = 1f;
+    //        }
+    //        else if (GameState.InCombat && this.TimeScale > 1.1f) {
+    //            //Time.timeScale = GameState.Option.CombatSpeed;
+    //            //In combat, need to cache the old and rescale
+    //            this.TimeScale = 1.0f;
+    //        }
+    //        else {
+    //            Time.timeScale = this.TimeScale;
+    //        }
+    //    }
+
+    //    [NewMember]
+    //    bool UltraFastModeEngaged = false;
+
+       
+    //    [NewMember]
+    //    [DuplicatesBody("OnyxUpdate")]
+    //    public void orig_OnyxUpdate() { }
+        
+
+    //    [ModifiesMember("OnyxUpdate")]
+    //    public void OnyxUpdateNew()
+    //    {
+    //        if (!UseMod) {
+    //            orig_OnyxUpdate();
+    //            return;
+    //        }
+    //        Game.Console.AddMessage(Config);
+    //        this.RealtimeSinceStartupThisFrame = Time.realtimeSinceStartup;
+    //        this.GameTimeSinceStartup += Time.deltaTime;
+    //        float num = 0.2f;
+    //        TimeController.m_smoothUnscaledDeltaTime = num * TimeController.UnscaledDeltaTime + (1f - num) * TimeController.m_previousSmoothUnscaledDeltaTime;
+    //        TimeController.m_previousSmoothUnscaledDeltaTime = TimeController.m_smoothUnscaledDeltaTime;
+
+    //        if (!GameState.IsLoading) {
+    //            this.UpdateTimeScale();
+    //        }
+    //        if (UIWindowManager.KeyInputAvailable) {
+    //            if (GameInput.GetControlDown(MappedControl.RESTORE_SPEED, true)) {
+    //                this.TimeScale = this.NormalTime;
+    //            }
+    //            else if (GameInput.GetControlDown(MappedControl.COMBAT_SPEED_DOWN, true)) {
+    //                this.ToggleSlow();
+    //                //Debug.LogError("TOGGLE SLOW");
+    //            }
+    //            else if (GameInput.GetControlDown(MappedControl.COMBAT_SPEED_UP, true)) {
+    //                this.ToggleFast();
+    //                //Debug.LogError("TOGGLE SLOW");
+    //            }
+    //            else if (GameInput.GetControlDown(MappedControl.FAST_TOGGLE, true)) {
+    //                if (!UltraFastModeEngaged) {
+    //                    this.TimeScale = 6.0f;
+    //                    gameSpeed = GameSpeedState.SIX;
+    //                    UltraFastModeEngaged = true;
+    //                }
+    //                else {
+    //                    this.TimeScale = 1.0f;
+    //                    gameSpeed = GameSpeedState.NORMAL;
+    //                    UltraFastModeEngaged = false;
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 }
 
 

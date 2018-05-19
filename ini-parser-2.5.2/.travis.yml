@@ -1,0 +1,9 @@
+language: csharp
+solution: src/INIFileParser.sln
+script:
+  - nuget restore src/INIFileParser.sln
+  - xbuild src/INIFileParser.sln /nologo /verbosity:normal /p:Configuration=Release
+  - mono ./src/packages/NUnit.Runners.2.6.4/tools/nunit-console.exe -noxml -nodots -labels ./src/IniFileParser.Tests/bin/Release/IniFileParser.Tests.dll
+mono:
+  - latest
+  - 3.12.0

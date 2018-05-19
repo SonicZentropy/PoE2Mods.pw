@@ -31,7 +31,7 @@ namespace PoE2Mods
         [ModifiesMember("OnyxAwake")]
         public void OnyxAwakeNew()
         {
-            base.OnyxAwake();
+            //base.OnyxAwake();
             this.DisableAchievements = false;
         }
         
