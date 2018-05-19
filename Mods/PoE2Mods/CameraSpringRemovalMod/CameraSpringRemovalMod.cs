@@ -8,10 +8,10 @@ using Game.UI;
 using Patchwork;
 using UnityEngine;
 
-namespace PoEMods.pw
+namespace POE2Mods
 {
-    [ModifiesType]
-    public class CameraSpringRemovalMod : SmartCamera
+    [ModifiesType("Game.SmartCamera")]
+    public class CameraSpringRemovalMod : Game.SmartCamera
     {
         private Vector3 SpringTuneNew
         {
@@ -19,7 +19,10 @@ namespace PoEMods.pw
             get {
                 //////////////////////////////////////////
                 //THIS LINE THROWS THE EXCEPTION
-                List<GameObject> list = this.m_trackedObjects[(Game.SmartCamera.TrackingTargetType)0];
+                //List<GameObject> list = this.m_trackedObjects[(Game.SmartCamera.TrackingTargetType.ActivePartyMember)];
+                var apm = TrackingTargetType.ActivePartyMember;
+                List<GameObject> list;
+                //var ob = m_trackedObjects.TryGetValue(apm, out list);
                 return MovementSpringTune * 2f;
         
                 //Original
