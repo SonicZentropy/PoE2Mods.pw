@@ -49,6 +49,7 @@
     <Compile Include="AchievementEnablerMod\AchievementEnablerMod.cs" />
     <Compile Include="AchievementEnablerMod\AchievementTrackerNew.cs" />
     <Compile Include="AchievementEnablerMod\CommandLineRunNew.cs" />
+    <Compile Include="CameraSpringRemovalMod\CameraSpringRemovalMod.cs" />
     <Compile Include="CameraZoomMod\SyncCameraOrthoSettingsNew.cs" />
     <Compile Include="GameSpeedMod\GameSpeedMod.cs" />
     <Compile Include="POE2PatchInfo.cs" />
@@ -70,8 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AddSpellCastsPerLevelMod\" />
-    <Folder Include="CameraSpringRemovalMod\" />
-    <Folder Include="CameraZoomMod\" />
     <Folder Include="CipherFocusMod\" />
     <Folder Include="DifficultyIconsMod\" />
     <Folder Include="DisableAutosaveMod\" />
