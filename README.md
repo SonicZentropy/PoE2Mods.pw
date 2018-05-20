@@ -74,6 +74,23 @@ There are 2 Console Commands already built into the game.
   * SetClassLevel will alter a major class (not subclass).  It takes 4 arguments - the character ID, class ID, level, and a boolean reset.  Character ID can be found with the console command `FindCharacter <name>` such as `FindCharacter Eder`.  Class ID is just the class name, such as `Monk`. Level is the level to grant the new class to.  The boolean reset is either `true`	or `false`. If true, it erases ALL other class data.  If false, it persists them.  By passing false, this enables you to do things such as making a single character 5 different classes.  I have no idea what doing this will cause to happen, but it seems to work at a cursory level and will probably destroy your game.  Use at your own risk.
   * SetSubClass will add a subclass to a currently possessed major class.  It takes 3 arguments.  The first is Character ID, which is the same as above.  The second is Class ID for the MAJOR class, also the same as above.  The third is SubclassID, which is the subclass name prefixed with the major class name separated by an underscore. For example, to add the `Devoted` subclass to Eder, you'd use `SetSubclass Companion_Eder(Clone) Fighter Fighter_Devoted`.  This only takes effect if Eder is already a Fighter, otherwise it lurks and does nothing unless you add Fighter to Eder via SetClassLevel above.  Note that you don't get any of the related subclass choices, such as picking a favored weapon for Devoted, but you do seem to get the benefits/penalties.
   * For potential developers - all class/subclass data is handled really creatively by Obsidian.  Every character has every class as a possibility, and they coexist.  All actual realtime data is stored in subclassed PersistentData areas, which are what SetClassLevel/SetSubClass modify.  
+  
+# MODIFYING EXPERIENCE GAIN RATE
+
+Also not related to my mods, but since probably lots of people will want this...Copy pasted from an issue:
+
+The value is stored in JSON so you don't even need a mod to adjust it to your liking. To find it, head to
+
+Pillars of Eternity II\PillarsOfEternityII_Data\exported\design\gamedata
+
+now open global.gamedatabundle in whatever text editor you want. You'll need a JSON formatter to make it readable -- I use Atom with PrettyJSON package. Once you can read it, ctrl F for
+
+"DebugName": "ExperienceTable",
+
+What follows is the exp values for every single level. You can make them super huge if you want from there.  In that file:
+"PartySizeBonusExperiencePercent"
+
+Putting it at 12 results in a 25% deficit and putting it at 0 results in a 50% deficit. The setting likely is only used when your party consists of 2 or fewer characters, so quite great for soloplay.
 
 
 # RELEASE NOTES
