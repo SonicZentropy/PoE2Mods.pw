@@ -57,6 +57,8 @@
     <Compile Include="DifficultyIconsMod\UICharacterLevelIconGetterNew.cs" />
     <Compile Include="DisableAutosaveMod\DisableAutosaveMod.cs" />
     <Compile Include="GameSpeedMod\GameSpeedMod.cs" />
+    <Compile Include="ShipMechanicsMod\Player.cs" />
+    <Compile Include="ShipMechanicsMod\WorldMapPlayer.cs" />
     <Compile Include="ShipMoraleMod\ShipMoraleMod.cs" />
     <Compile Include="UserConfig\UserConfig.cs" />
     <Compile Include="MulticlassPenaltyRemoverMod\MulticlassPenaltyRemover.cs" />
@@ -84,6 +86,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo d | xcopy /F /y $(TargetPath) $(SolutionDir)\PatchworkLauncher\bin\$(ConfigurationName)\Mods</PostBuildEvent>
+    <PostBuildEvent>echo d | xcopy /F /y "$(TargetPath)" "$(SolutionDir)\PatchworkLauncher\bin\$(ConfigurationName)\Mods"</PostBuildEvent>
   </PropertyGroup>
 </Project>
