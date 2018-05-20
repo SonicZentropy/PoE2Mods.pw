@@ -26,6 +26,10 @@
     <WarningLevel>4</WarningLevel>
     <DefineConstants>DEBUG;TRACE;NET_3_5;NET_4_0;NET_4_5;</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'net_4_5_Release|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Reference Include="System.Core" />
   </ItemGroup>

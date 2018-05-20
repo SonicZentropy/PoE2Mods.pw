@@ -22,7 +22,7 @@ Using the program is straight-forward:
 
     Extract it into an empty folder.
 	
-	Copy "ModIniFile.ini" and "INIFileParser.dll" to your base POE2 directory next to the exe.
+	Copy "ModIniFile.ini" to your base POE2 directory next to the exe.  Copy "INIFileParser.ini" to the Pillars of Eternity II\PillarsOfEternityII_Data\Managed subdir next to Assembly-CSharp.dll
 	
 	Edit the ModIniFile to your liking in a text editor to disable/enable individual mods or change settings.
 
