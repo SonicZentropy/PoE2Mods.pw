@@ -11,7 +11,7 @@ using Game.UI;
 using PoE2Mods;
 using UnityEngine;
 
-namespace DifficultyIconsAlways
+namespace PoE2Mods
 {
     //This controls character icons, not quest icons
     [ModifiesType("Game.UI.UICharacterLevelIconGetter")]

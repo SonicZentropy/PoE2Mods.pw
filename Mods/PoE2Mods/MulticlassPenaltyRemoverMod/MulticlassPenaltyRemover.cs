@@ -12,7 +12,7 @@ using PoE2Mods;
 using UnityEngine;
 //using SDK;
 
-namespace TyrannyMods.pw
+namespace PoE2Mods
 {
     /// <summary>
     /// Modifies the game speed toggles to add a new 6x speed.

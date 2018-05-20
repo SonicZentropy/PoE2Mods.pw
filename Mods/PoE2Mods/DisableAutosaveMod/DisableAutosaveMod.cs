@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Game;
-using PoE2Mods;
 
-namespace DisableAutosave
+
+namespace PoE2Mods
 {
     [ModifiesType("Game.GameState")]
     public class DisableAutosaveMod : Game.GameState

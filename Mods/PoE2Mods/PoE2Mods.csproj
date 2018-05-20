@@ -57,6 +57,7 @@
     <Compile Include="DifficultyIconsMod\UICharacterLevelIconGetterNew.cs" />
     <Compile Include="DisableAutosaveMod\DisableAutosaveMod.cs" />
     <Compile Include="GameSpeedMod\GameSpeedMod.cs" />
+    <Compile Include="ShipMoraleMod\ShipMoraleMod.cs" />
     <Compile Include="UserConfig\UserConfig.cs" />
     <Compile Include="MulticlassPenaltyRemoverMod\MulticlassPenaltyRemover.cs" />
     <Compile Include="POE2PatchInfo.cs" />

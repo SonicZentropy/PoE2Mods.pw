@@ -9,7 +9,7 @@ using Patchwork;
 using PoE2Mods;
 using UnityEngine;
 
-namespace TyrannyMods.pw
+namespace PoE2Mods
 {
     [ModifiesType]
     public class CipherFocus : FocusTrait

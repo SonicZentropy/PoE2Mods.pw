@@ -3,7 +3,7 @@ using Game;
 using Game.GameData;
 using PoE2Mods;
 
-namespace DifficultyIconsAlwaysMod
+namespace PoE2Mods
 {
     [ModifiesType]
     public class CombatSettingsComponentNew : CombatSettingsComponent

@@ -37,6 +37,9 @@ namespace PoE2Mods
         [NewMember] 
         float MaxGameSpeedSetting;
 
+        [NewMember] 
+        bool PrintSpeed;
+
 
         [ModifiesMember("OnyxStart")]
         public void OnyxStartNew()
@@ -44,9 +47,15 @@ namespace PoE2Mods
             UseMod = UserConfig.GetValueAsBool("GameSpeedMod", "enableMod");
             ToggleMaxGameSpeed = UserConfig.GetValueAsFloat("GameSpeedMod", "toggleGameSpeed");
             MaxGameSpeedSetting = UserConfig.GetValueAsFloat("GameSpeedMod", "maxGameSpeed");
+            PrintSpeed = UserConfig.GetValueAsBool("GameSpeedMod", "PrintSpeed");
             Config = MaxGameSpeedSetting.ToString();
 
             this.m_TimeScale = this.NormalTime;
+        }
+
+        [NewMember]
+        public void PrintSpeedToConsole(float speed) {
+            Game.Console.AddMessage("New speed is: " + speed);
         }
 
         [NewMember]
@@ -77,6 +86,10 @@ namespace PoE2Mods
                 TimeScale = 6.0f;
             } else if (TimeScale < 6.1f) {
                 TimeScale = MaxGameSpeedSetting;
+            }
+
+            if (PrintSpeed) {
+                PrintSpeedToConsole(TimeScale);
             }
 
             this.UpdateTimeScale();
@@ -112,6 +125,10 @@ namespace PoE2Mods
             }
             else {
                 TimeScale = 0.2f;
+            }
+
+            if (PrintSpeed) {
+                PrintSpeedToConsole(TimeScale);
             }
             
             this.UpdateTimeScale();
@@ -243,6 +260,9 @@ namespace PoE2Mods
                     else {
                         this.TimeScale = 1.0f;
                         UltraFastModeEngaged = false;
+                    }
+                    if (PrintSpeed) {
+                        PrintSpeedToConsole(TimeScale);
                     }
                 }
             }
