@@ -21,6 +21,10 @@ Patchwork is a Mono/.NET application and so needs the .NET Framework or Mono to 
 Using the program is straight-forward:
 
     Extract it into an empty folder.
+	
+	Copy "ModIniFile.ini" and "INIFileParser.dll" to your base POE2 directory next to the exe.
+	
+	Edit the ModIniFile to your liking in a text editor to disable/enable individual mods or change settings.
 
     Launch the program (PatchworkLauncher.exe)
 
@@ -40,10 +44,6 @@ Using the program is straight-forward:
 
 Building is fairly straightforward.  You will need to create an Open Assembly version of PoE2's original Assembly-CSharp.dll found in the PillarsOfEternity2_Data/Managed directory of your game install.  You do this via OpenAssemblyCreator.exe which is included in the repo.  Your mod projects will all need to reference this OPEN assembly.  Once this reference has been added, the solution should build just fine.  See my various included mod projects for development guidelines.
 
-# Deployment
-
-Once you've successfully built, you'll find your mods inside of each of the Mod build paths.  Those DLLs need to be moved to your PatchworkLauncher folder, preferably into a Mods subdir like I've done in my Release.
-
 # Current Mods
 
   * GameSpeed adds a new way-faster speed option and turns the toggle fast/slow hotkeys into scaled steps.  Combat Speed has been removed and the whole thing feels very similar to PoE1.  The Combat Speed Up/Down keybindings in-game will adjust your in-game speed across (0.2x, 1x, 2x, 6x).  Pressing F or the Fast Mode toggle key will instantly toggle the speed to 10x for running around maps really fast wheee.
@@ -55,8 +55,8 @@ Once you've successfully built, you'll find your mods inside of each of the Mod 
   * ResetEmpowerAndSpells - This instantly restores all empower points and/or spells/abilities for all selected characters.  Select 1 or more characters, then press Ctrl + E to restore Empower points and press Ctrl + S to restore spellcasts/abilities.  This restores special stuff as well, like Cipher focus and Chanter phrases.
   * AddSpellCastsPerLevel - Adds additional spell casts per encounter for each tier, by request.  It's set at 2/level right now, but easy to change in the code.  You can see the proper variable at the top of the mod's replacement method.
   * CameraZoomMod - Removes zoom out limit, yay.
-  * DifficultyIconsMod - Contributor mod, 5 stars.  Adds zone difficulty icons back to areas that setting Level Scaling removed them for no good reason.
-  * DifficultyIconsAlways - Same as previous, except also for game difficulties and sticks 'em back onto the tooltips on individual enemies.   
+  * DifficultyIconsMod - Contributor mod, 5 stars.  Adds zone difficulty icons back to areas that setting Level Scaling removed them for no good reason.  Also optionally re-enables the character icons on individual enemies.  You can control each of these independently from the INI file.
+  
 
 # STEAM ACHIEVEMENTS
 
@@ -77,6 +77,8 @@ There are 2 Console Commands already built into the game.
 
 
 # RELEASE NOTES
+
+2.0 - Completely refactored codebase.  See the instructions above, as everything is now controlled from a new INI file.  Updated to the new PoE2 Patch as well.
 
 1.30 - Lots of new mods!  First up, DifficultyIconsMod from our first official contributor other than me, thanks man!  Fixes not having difficulty icons when you scale levels, totally awesome.  I added a companion mod that adds onto DifficultyIconsMod called DifficultyIconsAlways which also ignores difficulty level in addition to scaling, so you always get difficulty icons on any difficulty (I'm playing on PotD and hate not having them).  
 I added another request that bumps up the number of spells from each tier you can cast in a fight (set at 2 right now), and an unlocked camera zoom which feels so much better. 

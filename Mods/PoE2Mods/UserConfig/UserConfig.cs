@@ -20,7 +20,7 @@ namespace PoE2Mods
         {
             FileIniDataParser fileIniData = new FileIniDataParser();
             
-            parsedData = fileIniData.ReadFile("TestIniFile.ini");
+            parsedData = fileIniData.ReadFile("ModIniFile.ini");
         }
 
         public static string GetAllIniDataAsString()
