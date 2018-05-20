@@ -25,19 +25,6 @@ namespace PoE2Mods
     [ModifiesType]
     public class mod_TimeController : Game.TimeController
     {
-        [NewType]
-        enum GameSpeedState
-        {
-            SLOW,
-            NORMAL,
-            DOUBLE,
-            SIX,
-            TEN
-        }
-
-        [NewMember]
-        GameSpeedState gameSpeed = GameSpeedState.NORMAL;
-
         [NewMember]
         string Config;
 
@@ -244,21 +231,17 @@ namespace PoE2Mods
                 }
                 else if (GameInput.GetControlDown(MappedControl.COMBAT_SPEED_DOWN, true)) {
                     this.ToggleSlow();
-                    //Debug.LogError("TOGGLE SLOW");
                 }
                 else if (GameInput.GetControlDown(MappedControl.COMBAT_SPEED_UP, true)) {
                     this.ToggleFast();
-                    //Debug.LogError("TOGGLE SLOW");
                 }
                 else if (GameInput.GetControlDown(MappedControl.FAST_TOGGLE, true)) {
                     if (!UltraFastModeEngaged) {
                         this.TimeScale = ToggleMaxGameSpeed;
-                        //gameSpeed = GameSpeedState.SIX;
                         UltraFastModeEngaged = true;
                     }
                     else {
                         this.TimeScale = 1.0f;
-                        //gameSpeed = GameSpeedState.NORMAL;
                         UltraFastModeEngaged = false;
                     }
                 }

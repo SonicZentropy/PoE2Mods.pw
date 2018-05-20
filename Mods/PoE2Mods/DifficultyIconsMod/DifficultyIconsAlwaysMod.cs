@@ -1,19 +1,37 @@
 ﻿using Patchwork;
 using Game;
 using Game.GameData;
+using PoE2Mods;
 
 namespace DifficultyIconsAlwaysMod
 {
     [ModifiesType]
     public class CombatSettingsComponentNew : CombatSettingsComponent
     {
+        [NewMember]
+        static bool ConfigHasBeenInit;
+
+        [NewMember]
+        static bool UseMod;
+
+        //This controls the quest icons only
         [ModifiesMember("GetDifficultyIcons")]
         public LevelDifficultyIcons GetDifficultyIconsNew(int playerLevel, int targetLevel)
         {
+            if (!ConfigHasBeenInit) {
+                ConfigHasBeenInit = true;
+                UseMod = UserConfig.GetValueAsBool("DifficultyIconsMod", "enableQuestIcons");
+            }
+
             LevelDifficultyIcons levelDifficultyIconSettings = null;
 
             // Original condition: re-enable to hide level difficulty icons when level scaling is on
-            // if (GameState.Option.LevelScaling == LevelScalingOption.None && !GameState.Option.ShowDifficultyIndicators)
+            if (!UseMod) {
+                if (GameState.Option.LevelScaling == LevelScalingOption.None &&
+                    !GameState.Option.ShowDifficultyIndicators)
+                    return null;
+            }
+
             if (!GameState.Option.ShowDifficultyIndicators)
             {
                 return null;
