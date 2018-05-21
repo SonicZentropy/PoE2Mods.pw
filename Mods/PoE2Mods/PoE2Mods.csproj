@@ -57,6 +57,7 @@
     <Compile Include="DifficultyIconsMod\UICharacterLevelIconGetterNew.cs" />
     <Compile Include="DisableAutosaveMod\DisableAutosaveMod.cs" />
     <Compile Include="GameSpeedMod\GameSpeedMod.cs" />
+    <Compile Include="PartyAssistRangeMod\PartyAssistRangeMod.cs" />
     <Compile Include="ShipMechanicsMod\Player.cs" />
     <Compile Include="ShipMechanicsMod\WorldMapPlayer.cs" />
     <Compile Include="ShipMoraleMod\ShipMoraleMod.cs" />
