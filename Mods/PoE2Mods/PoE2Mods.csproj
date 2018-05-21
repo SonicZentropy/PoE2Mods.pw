@@ -56,6 +56,7 @@
     <Compile Include="DifficultyIconsMod\DifficultyIconsAlwaysMod.cs" />
     <Compile Include="DifficultyIconsMod\UICharacterLevelIconGetterNew.cs" />
     <Compile Include="DisableAutosaveMod\DisableAutosaveMod.cs" />
+    <Compile Include="FreeSurrenderMod\FreeSurrenderMod.cs" />
     <Compile Include="GameSpeedMod\GameSpeedMod.cs" />
     <Compile Include="ShipMechanicsMod\Player.cs" />
     <Compile Include="ShipMechanicsMod\WorldMapPlayer.cs" />
