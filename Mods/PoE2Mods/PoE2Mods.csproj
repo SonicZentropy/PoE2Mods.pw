@@ -56,8 +56,12 @@
     <Compile Include="DifficultyIconsMod\DifficultyIconsAlwaysMod.cs" />
     <Compile Include="DifficultyIconsMod\UICharacterLevelIconGetterNew.cs" />
     <Compile Include="DisableAutosaveMod\DisableAutosaveMod.cs" />
+    <Compile Include="DPSMeter\DamageInfoMod.cs" />
+    <Compile Include="DPSMeter\DPSMeter.cs" />
+    <Compile Include="DPSMeter\DPSUpdateManager.cs" />
     <Compile Include="FreeSurrenderMod\FreeSurrenderMod.cs" />
     <Compile Include="GameSpeedMod\GameSpeedMod.cs" />
+    <Compile Include="NoCombatRemovalMod\GenericAbilityComponentNew.cs" />
     <Compile Include="ShipMechanicsMod\Player.cs" />
     <Compile Include="ShipMechanicsMod\WorldMapPlayer.cs" />
     <Compile Include="ShipMoraleMod\ShipMoraleMod.cs" />

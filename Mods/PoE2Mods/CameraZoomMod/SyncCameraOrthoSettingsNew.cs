@@ -13,6 +13,7 @@ namespace PoE2Mods
     public class SyncCameraOrthoSettingsNew : SyncCameraOrthoSettings {
         
         [NewMember] private float MaxZoom;
+        [NewMember] private float MinZoom;
         [NewMember]
         bool ConfigHasBeenInit;
 
@@ -26,7 +27,7 @@ namespace PoE2Mods
                 this.m_targetZoomLevel = zoomLevel;
             }
             else {
-                this.m_targetZoomLevel = Mathf.Clamp(zoomLevel, GameState.Option.MinZoom, MaxZoom);
+                this.m_targetZoomLevel = Mathf.Clamp(zoomLevel, MinZoom, MaxZoom);
                 //this.m_targetZoomLevel = zoomLevel;
             }
             if (force) {
@@ -43,6 +44,7 @@ namespace PoE2Mods
             if (!ConfigHasBeenInit) {
                 ConfigHasBeenInit = true;
                 MaxZoom = UserConfig.GetValueAsFloat("CameraZoomMod","MaxZoom");
+                MinZoom = UserConfig.GetValueAsFloat("CameraZoomMod","MinZoom");
                 m_targetZoomLevel = 1.0f;
             }
 

@@ -18,7 +18,7 @@ using UnityEngine;
 
 namespace PoE2Mods
 {
-
+    
     /// <summary>
     /// Modifies the game speed toggles to add a new 6x speed.
     /// </summary>
@@ -96,7 +96,6 @@ namespace PoE2Mods
         }
 
         [NewMember]
-        [DuplicatesBody("ToggleSlow")]
         public void orig_ToggleSlow()
         {
             if (this.TimeScale == this.SlowTime) {
@@ -226,8 +225,8 @@ namespace PoE2Mods
 
 
         [ModifiesMember("OnyxUpdate")]
-        public void OnyxUpdateNew()
-        {
+        public void OnyxUpdateNew() {
+            
             if (!UseMod) {
                 orig_OnyxUpdate();
                 return;
