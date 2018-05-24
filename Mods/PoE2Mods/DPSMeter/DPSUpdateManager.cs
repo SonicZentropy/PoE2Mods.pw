@@ -57,7 +57,7 @@ namespace PoE2Mods.DPSMeter
 
         [NewMember]
         public void InitMods() {
-            UseMod = UserConfig.GetValueAsBool("ShipMoraleMod", "enableMod");
+            UseMod = UserConfig.GetValueAsBool("DPSMeter", "enableMod");
             
             ConfigHasBeenInit = true;
         }
