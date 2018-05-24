@@ -4,15 +4,28 @@ using Game.GameData;
 using Onyx;
 using Patchwork;
 using UnityEngine;
+#pragma warning disable 108,114
 
 namespace PoE2Mods.PartyAssistRangeMod
 {
-    [ModifiesType("Game.SkillManager")]
+    [ModifiesType]
     public class PartyAssistRangeMod : SkillManager
     {
+        [NewMember]
+        private static bool _configHasBeenInit;
+
+        [NewMember]
+        private static bool _useMod;
+
         [ModifiesMember("GetAssistValue")]
         public static int GetAssistValue(SkillGameData skill, CharacterStats primarySkillCheck, out int leftoverAssistPoints, out int pointsUntilNextLevel, StatBreakdown breakdown = null)
         {
+            if (!_configHasBeenInit)
+            {
+                _configHasBeenInit = true;
+                _useMod = UserConfig.GetValueAsBool("PartyAssistRangeMod", "enableMod");
+            }
+
             int num = 0;
 
             AssistBreakdown assistBreakdown = breakdown as AssistBreakdown;
@@ -30,6 +43,19 @@ namespace PoE2Mods.PartyAssistRangeMod
                 if (ScriptedInteraction.ActiveInteraction != null && !ScriptedInteraction.IsPartyMemberAvailable(ScriptedInteraction.ActiveInteraction, partyMember))
                 {
                     continue;
+                }
+
+                if (!_useMod && SingletonBehavior<ConversationManager>.Instance.IsConversationOrSIRunning())
+                {
+                    FlowChartPlayer activeConversationForHUD = SingletonBehavior<ConversationManager>.Instance.GetActiveConversationForHUD();
+                    if (activeConversationForHUD != null)
+                    {
+                        NPCInteraction component2 = activeConversationForHUD.OwnerObject.GetComponent<NPCInteraction>();
+                        if (component2 != null && !component2.IsPartyMemberInRange(partyMember))
+                        {
+                            continue;
+                        }
+                    }
                 }
 
                 num += component.CalculateSkill(skill, null);
