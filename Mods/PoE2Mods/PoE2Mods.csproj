@@ -59,6 +59,7 @@
     <Compile Include="DPSMeter\DamageInfoMod.cs" />
     <Compile Include="DPSMeter\DPSMeter.cs" />
     <Compile Include="DPSMeter\DPSUpdateManager.cs" />
+    <Compile Include="FogOfWarMod\FogOfWarMod.cs" />
     <Compile Include="FreeSurrenderMod\FreeSurrenderMod.cs" />
     <Compile Include="GameSpeedMod\GameSpeedMod.cs" />
     <Compile Include="NoCombatRemovalMod\GenericAbilityComponentNew.cs" />
