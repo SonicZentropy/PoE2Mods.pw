@@ -1,5 +1,5 @@
 # IMPORTANT!
-This is no longer remotely maintained.  If someone else would like to take over ownership of the framework, that is GREAT!  I'm happy to help you as much as I can.  Otherwise, as far as I know, this should still work -- provided you update the DLLs to the current version of PoE2 and make whatever code changes are necessary to be compatible with whichever version is current.
+This is no longer remotely maintained.  I just built it because it was interesting at the time.  If someone else would like to take over ownership of the framework, that is GREAT!  I'm happy to help you as much as I can.  Otherwise, as far as I know, this should still work -- provided you update the DLLs to the current version of PoE2 and make whatever code changes are necessary to be compatible with whichever version is current.
 
 
 # PoE2Mods.pw
